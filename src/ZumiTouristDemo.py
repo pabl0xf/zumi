@@ -116,7 +116,6 @@ def beepHappy():
     ser.write(b'p\n')
 
 def navigate_to_marker(x):
-    x%=112
     if x == 1:
       ser.write(b'q\n')
     elif x == 2:
