@@ -13,14 +13,14 @@
 #include "ex_Unplugged.h"
 #include "RokitFirmata.h"
 
-#define GREYL1 890
-#define GREYL2 915
-#define GREYL3 950
-#define GREYR1 910
-#define GREYR2 935
-#define GREYR3 960
-#define BLACKL 980
-#define BLACKR 990
+#define GREYL1 925
+#define GREYL2 945
+#define GREYL3 965
+#define GREYR1 945
+#define GREYR2 955
+#define GREYR3 975
+#define BLACKL 995
+#define BLACKR 995
 
 int melody[] = {NOTE_D3, NOTE_B3, 233};
 int tempo[] = {8, 8, 8};
@@ -99,14 +99,6 @@ void loop()
     sensorBL = analogRead(SBL);
     sensorBR = analogRead(SBR);
     
-    /*if (sensorBL < baseLV_L && sensorBR < baseLV_R)   DCMove(forward, speed);
-    else if (sensorBL > baseLV_L && sensorBR < baseLV_R)    DCMove(right, speed);
-    else if (sensorBR > baseLV_R && sensorBL < baseLV_L)    DCMove(left, speed);
-    else if (sensorBL > baseLV_L && sensorBR > baseLV_R == 0)   DCMove(left, 15);
-    else if (sensorBL > baseLV_L && sensorBR > baseLV_R == 1)   DCMove(right, 15);
-    else if (sensorBL < baseLV_L)   DCMove(left, speed); 
-    else if (sensorBR < baseLV_R)   DCMove(right, speed);*/
-
     if (sensorBL < GREYL1 && sensorBR < GREYR1)   DCMove(forward, speed);
     else if (sensorBL > GREYL1 && sensorBR > GREYR1 && sensorBL < GREYL2 && sensorBR < GREYR2 && grey != 1) grey = 1;
     else if (sensorBL > GREYL1 && sensorBR > GREYR1 && sensorBL < GREYL2 && sensorBR < GREYR2 && grey == 1) DCMove(forward, speed);
@@ -114,12 +106,10 @@ void loop()
     else if (sensorBL > GREYL2 && sensorBR > GREYR2 && sensorBL < GREYL3 && sensorBR < GREYR3 && grey == 2) DCMove(forward, speed);
     else if (sensorBL > GREYL3 && sensorBR > GREYR3 && sensorBL < BLACKL && sensorBR < BLACKR && grey != 3) grey = 3;
     else if (sensorBL > GREYL3 && sensorBR > GREYR3 && sensorBL < BLACKL && sensorBR < BLACKR && grey == 3) DCMove(forward, speed);
-    else if (sensorBL > BLACKL && sensorBR < BLACKR)    DCMove(right, speed);
-    else if (sensorBR > BLACKR && sensorBL < BLACKL)    DCMove(left, speed);
+    else if (sensorBL > BLACKL && sensorBR < BLACKR)    DCMove(right, 15);
+    else if (sensorBR > BLACKR && sensorBL < BLACKL)    DCMove(left, 15);
     else if (sensorBL > BLACKL && sensorBR > BLACKR == 0)   DCMove(left, 15);
     else if (sensorBL > BLACKL && sensorBR > BLACKR == 1)   DCMove(right, 15);
-    //else if (sensorBL < BLACKL)   DCMove(left, speed); 
-    //else if (sensorBR < BLACKR)   DCMove(right, speed);
 
     if (grey != greyOld){
       stopAndBeep();
