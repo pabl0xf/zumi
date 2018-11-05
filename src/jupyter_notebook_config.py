@@ -11,6 +11,13 @@ c.NotebookApp.port = 5555
 c.Notebook.open_browser = False
 c.NotebookApp.token=''
 
+c.NotebookApp.tornado_settings = {
+    'headers': {
+         'Content-Security-Policy': "frame-ancestors https://*:* 'self' ",
+         'Access-Control-Allow-Origin': '*',
+  }
+}
+
 ## The date format used by logging formatters for %(asctime)s
 #c.Application.log_datefmt = '%Y-%m-%d %H:%M:%S'
 
