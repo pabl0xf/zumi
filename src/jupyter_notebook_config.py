@@ -10,6 +10,7 @@ c.NotebookApp.ip = '*'
 c.NotebookApp.port = 5555
 c.Notebook.open_browser = False
 c.NotebookApp.token=''
+c.NotebookApp.allow_remote_access = True
 
 c.NotebookApp.tornado_settings = {
     'headers': {
