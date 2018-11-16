@@ -14,17 +14,20 @@ def go_backward():
     zumi.backward()
 
 def right_a_bit():
-    zumi.setMotor(10, -5)
-    time.sleep(.1)
+    zumi.setSpeed(30)
+    zumi.right()
+    time.sleep(.05)
     zumi.stop()
 
 def left_a_bit():
-    zumi.setMotor(-5, 10)
-    time.sleep(.1)
+    zumi.setSpeed(30)
+    zumi.left()
+    time.sleep(.05)
     zumi.stop()
 
 def forward_a_bit():
-    zumi.setMotor(20, 20)
+    zumi.setSpeed(30)
+    zumi.forward()
     time.sleep(.3)
     zumi.stop()
 
