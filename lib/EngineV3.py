@@ -6,15 +6,12 @@ import ZumiV3 as zumi
 
 def go_forward():
     zumi.forward()
-    print("Forward")
 
 def stop():
     zumi.stop()
-    print("Stop")
 
 def go_backward():
     zumi.backward()
-    print("Backward")
 
 def right_a_bit():
     zumi.setMotor(10, -5)
