@@ -13,6 +13,7 @@
 
 
 ## Step 1: Setting Up the Base
+![alt text](https://github.com/RobolinkInc/Linky/blob/master/doc/Build%20Images/1.0.jpg "Logo Title Text 1")
 ![alt text](https://github.com/RobolinkInc/Linky/blob/master/doc/Build%20Images/1.1.jpg "Logo Title Text 1")
 ![alt text](https://github.com/RobolinkInc/Linky/blob/master/doc/Build%20Images/1.2.jpg "Logo Title Text 1")
 ![alt text](https://github.com/RobolinkInc/Linky/blob/master/doc/Build%20Images/1.3.jpg "Logo Title Text 1")
