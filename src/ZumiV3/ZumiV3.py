@@ -69,3 +69,9 @@ def setSpeed(i):
         bus.write_byte_data(address, 70, int(i))
     except IOError:
         return setSpeed(i)
+
+def playExcited():
+    try:
+        bus.write_byte(address, 82)
+    except IOError:
+        return playExcited()
