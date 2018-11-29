@@ -12,13 +12,13 @@ if not creds or creds.invalid:
 drive_service = build('drive', 'v3', http=creds.authorize(Http()))
 
 cloud_folder_id = "1NwZ7PWLM4ZlHcvZhEWAM2N7YJDPhM9Pt"
-local_folder_path = "/home/pi/zumi/sample/deep-learning-demos/driving/images/"
+local_folder_path = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/"
 verbose_mode = False
     
 def upload_images_to_cloud():
     print("Uploading to Cloud..")
     for file_name in os.listdir(local_folder_path):
-        if file_name.endswith(".jpg"):
+        if is_valid_image(file_name):
             file_metadata = {'name': file_name,
                             "parents": ['' + cloud_folder_id + '']}
             media = MediaFileUpload(local_folder_path + file_name, 
@@ -29,6 +29,9 @@ def upload_images_to_cloud():
                                     media_body=media,
                                     fields='id').execute()
             print ("  Uploaded " + file_name)
+            
+def is_valid_image(file_name):
+    return file_name.endswith(".jpg") and os.path.getsize(local_folder_path + file_name) > 0 #the image is not empty
             
 def clear_images_from_cloud():
     files_to_delete = get_images_in_cloud()

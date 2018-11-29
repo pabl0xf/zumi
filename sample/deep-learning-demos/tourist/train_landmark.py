@@ -1,34 +1,30 @@
 import sys
 sys.path.insert(0,'/home/pi/zumi/lib')
 import EngineV3 as engine
-import picamera
+from TawnCam import PiCamera
 import time
 import cv2
 from IPython import display
 import PIL.Image
 
 def clean_up():
-    camera.close()
+    camera.shutdown() 
     engine.stop()
     exit()
 
-from picamera import PiCamera
-camera = PiCamera()
-resolution = 64
-camera.resolution = (resolution, resolution)
-camera.start_preview()
-engine.set_speed(20)
+camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
+
+engine.set_speed(50)
 
 command = ""
 
 try:
     while True:        
         
-        camera.capture("temp.jpg")
-        image = cv2.imread("temp.jpg")
+        image = camera.run()
         image = cv2.flip(image, -1)
 
-        command = input("which direction?")           
+        command = input("")            
 
         if command == 'w':
             command = 'up' 
@@ -40,12 +36,23 @@ try:
             command = 'right' 
             engine.right_a_bit()
         elif command == 'z':
-            command = 'eiffel' 
-           
+            command = 'eiffel'
+            print(command + "!")
+        elif command == 'c':
+            command = 'chicago'
+            print(command + "!")
+        elif command == 'x':
+            command = "start"
+            print(command + "!")
+         
         engine.stop()
         
-        file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + str(time.time()) + "." + command + ".jpg"
-        cv2.imwrite(file_name, image)
+        if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago']:
+            file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + str(time.time()) + "." + command + ".jpg"
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            cv2.imwrite(file_name, image)
+        else:
+            print("# bad command: " + command)
         
 finally:
     clean_up()
