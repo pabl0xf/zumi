@@ -6,15 +6,14 @@
 
 ## This is an application.
 
-c.NotebookApp.ip = '*'
+c.NotebookApp.ip = '0.0.0.0'
 c.NotebookApp.port = 5555
 c.Notebook.open_browser = False
 c.NotebookApp.token=''
-c.NotebookApp.allow_remote_access = True
 
 c.NotebookApp.tornado_settings = {
     'headers': {
-         'Content-Security-Policy': "frame-ancestors https://*:* 'self' ",
+         'Content-Security-Policy': "frame-ancestors http://*:* 'self' ",
          'Access-Control-Allow-Origin': '*',
   }
 }
