@@ -480,8 +480,7 @@ Blockly.Blocks["zumi_face_detected_junior"] = {
   init: function() {
     this.jsonInit({
       message0: "face detected",
-      previousStatement: null,
-      nextStatement: null,
+      output: "Boolean",
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
       colour: Blockly.Blocks.codrone.HUE,
       helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
@@ -493,8 +492,7 @@ Blockly.Blocks["zumi_face_detected_senior"] = {
   init: function() {
     this.jsonInit({
       message0: "face_detected()",
-      previousStatement: null,
-      nextStatement: null,
+      output: "Boolean",
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
       colour: Blockly.Blocks.codrone.HUE,
       helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL

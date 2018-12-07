@@ -117,15 +117,15 @@ Blockly.Python["zumi_personality_act_junior"] = function(block) {
 };
 
 Blockly.Python["zumi_face_detected_junior"] = function(block) {
-  return "computerVision.face_detected()\n";
+  return ["camera.face_detected()", Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python["zumi_track_face_junior"] = function(block) {
-  return "computerVision.track_face()\n";
+  return "camera.track_face()\n";
 };
 
 Blockly.Python["zumi_take_photo_junior"] = function(block) {
-  return "computerVision.take_photo()\n";
+  return "camera.take_photo()\n";
 };
 
 Blockly.Python["zumi_smile_detected_junior"] = function(block) {
@@ -156,15 +156,15 @@ Blockly.Python["zumi_personality_act_senior"] = function(block) {
 };
 
 Blockly.Python["zumi_face_detected_senior"] = function(block) {
-  return "computerVision.face_detected()\n";
+  return ["camera.face_detected()", Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python["zumi_track_face_senior"] = function(block) {
-  return "computerVision.track_face()\n";
+  return "camera.track_face()\n";
 };
 
 Blockly.Python["zumi_take_photo_senior"] = function(block) {
-  return "computerVision.take_photo()\n";
+  return "camera.take_photo()\n";
 };
 
 Blockly.Python["zumi_smile_detected_senior"] = function(block) {

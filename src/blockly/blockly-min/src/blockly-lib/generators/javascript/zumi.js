@@ -86,7 +86,7 @@ Blockly.JavaScript["zumi_smile_detected_junior"] = function(block) {
 };
 
 Blockly.JavaScript["zumi_face_detected_junior"] = function(block) {
-  return "await faceDetected();\n";
+  return ["faceDetected()", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript["zumi_track_face_junior"] = function(block) {
@@ -156,7 +156,7 @@ Blockly.JavaScript["zumi_smile_detected_senior"] = function(block) {
 };
 
 Blockly.JavaScript["zumi_face_detected_senior"] = function(block) {
-  return "await faceDetected();\n";
+  return ["faceDetected()", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript["zumi_track_face_senior"] = function(block) {
@@ -168,10 +168,10 @@ Blockly.JavaScript["zumi_collect_smile_senior"] = function(block) {
   return "await collectSmile();\n";
 };
 
-Blockly.Python["zumi_take_photo_junior"] = function(block) {
+Blockly.JavaScript["zumi_take_photo_junior"] = function(block) {
   return "await takePhoto()\n";
 };
 
-Blockly.Python["zumi_take_photo_senior"] = function(block) {
+Blockly.JavaScript["zumi_take_photo_senior"] = function(block) {
   return "await takePhoto()\n";
 };
