@@ -4,8 +4,9 @@ Description=Jupyter Notebook
 [Service]
 Type=simple
 PIDFile=/run/jupyter.pid
+Environment=JUPYTER_CONFIG_DIR=/home/pi/zumi/src/jupyter-config/
 
-ExecStart=/usr/local/bin/jupyter-notebook --config=/home/pi/zumi/src/jupyter-config/jupyter_notebook_config.py
+ExecStart=/usr/local/bin/jupyter-notebook
 User=pi
 Group=pi
 WorkingDirectory=/home/pi/zumi
