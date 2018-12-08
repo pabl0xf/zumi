@@ -5,7 +5,7 @@ Description=Jupyter Notebook
 Type=simple
 PIDFile=/run/jupyter.pid
 
-ExecStart=/usr/local/bin/jupyter-notebook --config=/home/pi/.jupyter/jupyter_notebook_config.py
+ExecStart=/usr/local/bin/jupyter-notebook --config=/home/pi/zumi/src/jupyter-config/jupyter_notebook_config.py
 User=pi
 Group=pi
 WorkingDirectory=/home/pi/zumi
