@@ -1030,6 +1030,10 @@ div.master-toolbox
   background-image: url(images/icons/comp-vis.svg);
 }
 
+.blocklyTreeLabel.camera {
+  background-image: url(images/icons/comp-vis.svg);
+}
+
 .blocklyTreeLabel.sensors {
   background-image: url(images/icons/sensor_icon.svg);
 }

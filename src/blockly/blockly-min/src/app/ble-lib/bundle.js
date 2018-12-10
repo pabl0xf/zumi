@@ -5751,7 +5751,7 @@ global.RUN_ONLY_DISPLAY_BLOCKS = false;
 global.DISPLAY_INTERVAL = false;
 global.KEY_PRESSED = -1;
 global.DEVICE_TYPE = "codrone";
-global.ZUMI_IMPORT_STATEMENT = "import sys\nsys.path.insert(0,'/home/pi/zumi/lib')\nimport Engine as engine\nimport Infrared as infrared\nimport Personality as personality\nimport ComputerVision as computerVision\nimport Personality as personality\n\n";
+global.ZUMI_IMPORT_STATEMENT = "import sys\nsys.path.insert(0,'/home/pi/zumi/lib')\nimport Engine as engine\nimport Infrared as infrared\nimport Camera as camera\n\n";
 global.CODRONE_IMPORT_STATEMENT = "import CoDrone\n\ndrone = CoDrone.CoDrone()\ndrone.pair(drone.Nearest)\n\n";
 global.BACKGROUND_RUNNING = false;
 global.ZUMI_CURRENT_VIEW = "junior";
@@ -29165,6 +29165,7 @@ Code.tabClick = function (clickedName) {
  * Populate the currently selected pane with content generated from the blocks.
  */
 Code.renderContent = function () {
+  var importStatement = DEVICE_TYPE === "codrone" ? CODRONE_IMPORT_STATEMENT : ZUMI_IMPORT_STATEMENT;
   var content = document.getElementById("content_" + Code.selected);
   // Initialize the pane.
   if (content.id == "content_xml") {
@@ -29194,7 +29195,7 @@ Code.renderContent = function () {
     if (typeof PR.prettyPrintOne == "function") {
       code = content.textContent;
       code = PR.prettyPrintOne(code, "py");
-      content.innerHTML = "drone = CoDrone.CoDrone()\n" + "drone.pair()\n\n" + code;
+      content.innerHTML = importStatement + code;
     }
   }
 };

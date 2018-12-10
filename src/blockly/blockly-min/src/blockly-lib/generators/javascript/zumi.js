@@ -175,3 +175,11 @@ Blockly.JavaScript["zumi_take_photo_junior"] = function(block) {
 Blockly.JavaScript["zumi_take_photo_senior"] = function(block) {
   return "await takePhoto()\n";
 };
+
+Blockly.JavaScript["zumi_camera_show_junior"] = function(block) {
+  return "await show()\n";
+};
+
+Blockly.JavaScript["zumi_camera_show_senior"] = function(block) {
+  return "await show()\n";
+};
