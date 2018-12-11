@@ -15,7 +15,7 @@ def load_model(which_demo):
 def drive_to_landmark(landmark, model):
     import sys
     sys.path.insert(0,'/home/pi/zumi/lib')
-    import EngineV3 as engine
+    import Engine as engine
     from IPython import display 
     import cv2
     import numpy as np
