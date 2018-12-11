@@ -3,32 +3,40 @@ sys.path.insert(0,'/home/pi/zumi/lib')
 from TawnCam import PiCamera
 import cv2
 
-camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
+print("loading camera...")
+camera = PiCamera(image_w=400, image_h=400, image_d=3, framerate=10)
 
 def face_detected():
+    face_detector = cv2.CascadeClassifier('/home/pi/zumi/sample/openCV-demos/face_detection/haarcascade_frontalface_default.xml')
+    image = camera.run()
+    image = cv2.flip(image, -1)
+    faces = face_detector.detectMultiScale(image, 1.3, 5)
+    return type(faces) is not tuple
+
+# def face_detected_old():
     
-    face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+#     face_detector = cv2.CascadeClassifier('/home/pi/zumi/sample/haarcascade_frontalface_default.xml')
         
-    with picamera.PiCamera() as camera:
-        camera.resolution = (224, 192)
-        with picamera.array.PiRGBArray(camera) as stream:
-            camera.capture(stream, format='bgr')
-            image = stream.array
+# #     with .PiCamera() as camera:
+#         with picamera.array.PiRGBArray(camera) as stream:
+#             camera.capture(stream, format='bgr')
+#             image = stream.array
 
-#             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) might work better with this?
+# #             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) might work better with this?
 
-            faces = face_detector.detectMultiScale(image, 1.3, 5)
+#             faces = face_detector.detectMultiScale(image, 1.3, 5)
 
-            return type(faces) is not tuple
+#             return type(faces) is not tuple
 
 def take_photo():
-    with picamera.PiCamera() as camera:
-        camera.capture("your-face.jpg")
+    image = camera.run()
+    cv2.imwrite(image, "your-face.jpg")
+    show();
         
 def show():
     from IPython import display 
+    import PIL.Image 
     image = camera.run()
-
-#                 frame = cv2.flip(frame, -1)
+    image = cv2.flip(image, -1)
     display.clear_output(wait=True)
-    display.display(PIL.Image.fromarray(frame))
+    display.display(PIL.Image.fromarray(image))
