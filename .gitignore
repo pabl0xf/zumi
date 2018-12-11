@@ -3,3 +3,4 @@ doc/build-images
 .idea
 .ipynb_checkpoints
 zumi-snap.jpg
+src/jupyter-config/migrated
