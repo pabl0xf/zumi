@@ -16,11 +16,12 @@ def face_detected():
     image = camera.run()
     image = cv2.flip(image, -1)
     faces = face_detector.detectMultiScale(image, 1.3, 5)
-    return type(faces) is not tuple
+    result = type(faces) is not tuple
+    print("Detected face: " + result)
+    return result
 
 def take_photo():
     import os
-#     camera.set_resolution(640, 480)
     image = camera.run()
     image = cv2.flip(image, -1)
     file_name = "zumi-snap.jpg"
