@@ -1,10 +1,15 @@
 import sys
+sys.stdout.write('loading camera.')
+
 sys.path.insert(0,'/home/pi/zumi/lib')
 from TawnCam import PiCamera
 import cv2
 
-print("loading camera...")
-camera = PiCamera(image_w=300, image_h=300, image_d=3, framerate=10)
+sys.stdout.write('.')
+
+camera = PiCamera(image_d=3, framerate=10)
+
+sys.stdout.write('.')
 
 def face_detected():
     face_detector = cv2.CascadeClassifier('/home/pi/zumi/sample/openCV-demos/face_detection/haarcascade_frontalface_default.xml')
@@ -14,9 +19,14 @@ def face_detected():
     return type(faces) is not tuple
 
 def take_photo():
+    import os
+#     camera.set_resolution(640, 480)
     image = camera.run()
-    cv2.imwrite("your-face.jpg", image)
+    image = cv2.flip(image, -1)
+    file_name = "zumi-snap.jpg"
+    cv2.imwrite(file_name, image)
     show();
+    print("Saved photo at: " + os.getcwd() + "/" + file_name)
         
 def show():
     from IPython import display 
