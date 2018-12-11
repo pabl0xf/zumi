@@ -175,3 +175,11 @@ Blockly.Python["zumi_collect_smile_senior"] = function(block) {
   var arg0 = block.getFieldValue("EMOTION");
   return "DeepLearning.collect_smile()\n";
 };
+
+Blockly.Python["zumi_camera_show_junior"] = function(block) {
+  return "camera.show()\n";
+};
+
+Blockly.Python["zumi_camera_show_senior"] = function(block) {
+  return "camera.show()\n";
+};

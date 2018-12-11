@@ -330,6 +330,31 @@ Blockly.Blocks["zumi_stop_senior"] = {
   }
 };
 
+Blockly.Blocks["zumi_camera_show_junior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "show",
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+Blockly.Blocks["zumi_camera_show_senior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "show()",
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
 Blockly.Blocks["zumi_get_distance_junior"] = {
   init: function() {
     this.jsonInit({
