@@ -18,6 +18,8 @@ engine.set_speed(50)
 
 command = ""
 
+print("ready to train!")
+
 try:
     while True:        
         
@@ -35,19 +37,44 @@ try:
         elif command == 's':
             command = 'right' 
             engine.right_a_bit()
-        elif command == 'z':
+        elif command == 'e':
             command = 'eiffel'
+            engine.forward_a_bit()
             print(command + "!")
         elif command == 'c':
             command = 'chicago'
+            engine.forward_a_bit()
+            print(command + "!")
+        elif command == 't':
+            command = 'seattle'
+            engine.forward_a_bit()
+            print(command + "!")
+        elif command == 'n':
+            command = 'nyc'
+            engine.forward_a_bit()
+            print(command + "!")
+        elif command == 'z':
+            command = 'china'
+            engine.forward_a_bit()
+            print(command + "!")
+        elif command == 'b':
+            command = 'bigben'
+            engine.forward_a_bit()
+            print(command + "!")
+        elif command == 'k':
+            command = 'khalifa'
+            engine.forward_a_bit()
             print(command + "!")
         elif command == 'x':
             command = "start"
+            engine.forward_a_bit()
             print(command + "!")
-         
+        
+        
+        
         engine.stop()
         
-        if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago']:
+        if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle']:
             file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + str(time.time()) + "." + command + ".jpg"
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             cv2.imwrite(file_name, image)
