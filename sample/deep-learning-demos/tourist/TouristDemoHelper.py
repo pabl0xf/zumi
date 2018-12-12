@@ -15,7 +15,7 @@ def load_model(which_demo):
 def drive_to_landmark(landmark, model):
     import sys
     sys.path.insert(0,'/home/pi/zumi/lib')
-    import EngineV3 as engine
+    import Engine as engine
     from IPython import display 
     import cv2
     import numpy as np
@@ -44,17 +44,17 @@ def drive_to_landmark(landmark, model):
 
                 if iArrowDir == 0:
                     command = 'up' 
-                    engine.go_forward()
+                    engine.forward()
                 elif iArrowDir == 1:
                     command = 'left'
                     engine.left()
                     time.sleep(.1)
-                    engine.go_forward()
+                    engine.forward()
                 elif iArrowDir == 2:
                     command = 'right' 
                     engine.right()
                     time.sleep(.1)
-                    engine.go_forward()
+                    engine.forward()
                 elif iArrowDir == 3:
                     command = "eiffel"
                 elif iArrowDir == 4:

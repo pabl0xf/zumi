@@ -2,3 +2,5 @@ doc/build-images
 *.pyc 
 .idea
 .ipynb_checkpoints
+zumi-snap.jpg
+src/jupyter-config/migrated
