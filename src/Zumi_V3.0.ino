@@ -1,9 +1,6 @@
 #include <SoftPWM_timer.h>
 #include <SoftPWM.h>
 #include <Wire.h>
-#include <MPU6050_tockn.h>
-
-MPU6050 mpu6050(Wire);
 
 #define SLAVE_ADDRESS 0x04
 #define MUX_OUTPUT 21
@@ -34,13 +31,22 @@ int motorSpeed = 50;
 int sensorBL, sensorBR;
 int baseLV_L = 1023;
 int baseLV_R = 1023;
+int baseLV_BL = 1023;
+int baseLV_BR = 1023;
 int mode = 0;
+int light = 0;
+int battery = 0;
+int BLIR, BRIR, jediL, jediR;
 
 float angle, initAngle;
 float dAngle = 0.0;
 
+long unsigned currentTime = 0;
+
 void setup() {
   //Motor controller setup
+  //Right motor to M2
+  //Left motor to M1
   pinMode(MOTOR_LEFT_A, OUTPUT);
   pinMode(MOTOR_LEFT_B, OUTPUT);
   pinMode(MOTOR_RIGHT_A, OUTPUT);
@@ -66,7 +72,6 @@ void setup() {
   //Setup I2C communication
   Wire.begin(SLAVE_ADDRESS);
   Wire.onReceive(receiveData);
-  Wire.onRequest(sendData);
 
   //100 ms fade-up and 100 ms to fade-down.
   SoftPWMSetFadeTime(MOTOR_LEFT_A, 100, 100);
@@ -80,6 +85,11 @@ void setup() {
   pinMode(BACK_RIGHT_LED, OUTPUT);
   pinMode(BACK_LEFT_LED, OUTPUT);
 
+  digitalWrite(FRONT_LEFT_LED, LOW);
+  digitalWrite(FRONT_RIGHT_LED, LOW);
+  digitalWrite(BACK_LEFT_LED, LOW);
+  digitalWrite(BACK_RIGHT_LED, LOW);
+
   //100 ms fade-up and 100 ms to fade-down.
   SoftPWMSetFadeTime(FRONT_RIGHT_LED, 1, 1);
   SoftPWMSetFadeTime(FRONT_LEFT_LED, 1, 1);
@@ -89,38 +99,110 @@ void setup() {
   //This is for an accurate analog read
   bitsPerVolts = 1023.0 / (readVccMilliVolts() * 0.001);
 
-  setupLineTracer();
+  //Sound
+  pinMode(BUZZER_PIN, OUTPUT);
+  digitalWrite(BUZZER_PIN, LOW);
 
-  //Setup MPU6050
-  mpu6050.begin();
-  mpu6050.calcGyroOffsets(true);
+  setupIR();
 }
 
 void loop() {
-  //Turning using a gyro
-  if (mode > 0) {
-    mpu6050.update();
-    angle = mpu6050.getAngleZ();
-    if (mode == 1) {
-      initAngle = angle;
-      mode = 2;
-    }
-    if (abs(angle - initAngle) > dAngle) {
-      setMotorState(0, 0, 0);
-      mode = 0;
-    }
+  if ( millis() - currentTime > 400 ) {
+    if (battery < 75) battery++;
+    if (analogRead(BATT_LVL_PIN) / bitsPerVolts > 3.7) battery = 0;
+    light = 1 - light;
+    currentTime = millis();
+  }
+
+  //Flash hazard lights on a low battery warning
+  if ( light == 1 && battery == 75 ) {
+    digitalWrite(FRONT_LEFT_LED, HIGH);
+    digitalWrite(FRONT_RIGHT_LED, HIGH);
+    digitalWrite(BACK_LEFT_LED, HIGH);
+    digitalWrite(BACK_RIGHT_LED, HIGH);
+  }
+  else {
+    digitalWrite(FRONT_LEFT_LED, LOW);
+    digitalWrite(FRONT_RIGHT_LED, LOW);
+    digitalWrite(BACK_LEFT_LED, LOW);
+    digitalWrite(BACK_RIGHT_LED, LOW);
+  }
+
+  if ( mode == 2 ) {
+    BLIR = readIRaverage(5, 5);
+    BRIR = readIRaverage(3, 5);
+
+    if (BLIR < baseLV_BL) jediL = (baseLV_BL - BLIR) * 50 / baseLV_BL;
+    else jediL = 0;
+    if (BRIR < baseLV_BR) jediR = (baseLV_BR - BRIR) * 50 / baseLV_BR;
+    else jediR = 0;
+
+    setMotorState(1, jediL, jediR);
   }
 
   delay(100);
 }
 
-void setupLineTracer() {
+void setupIR() {
   for (int i = 0; i < 100; i++) {
     baseLV_L  = min(readIRaverage(4, 5), baseLV_L);
     baseLV_R  = min(readIRaverage(2, 5), baseLV_R);
+    BLIR = readIRaverage(5, 5);
+    BRIR = readIRaverage(3, 5);
+    if ( BLIR < baseLV_BL ) baseLV_BL = BLIR;
+    if ( BRIR < baseLV_BR ) baseLV_BR = BRIR;
   }
   baseLV_L += 50;
   baseLV_R += 50;
+  baseLV_BL -= 50;
+  baseLV_BR -= 50;
+}
+
+void playNote(int note, int duration) {
+  long initialTime = millis();
+
+  while ( millis() - initialTime < duration) {
+    digitalWrite(BUZZER_PIN, HIGH);
+    delayMicroseconds(note / 2); // period divided by 2 (50% duty cycle)
+    digitalWrite(BUZZER_PIN, LOW);
+    delayMicroseconds(note / 2);
+  }
+}
+
+void playMelody( int melody[], int beats[], int tempo, int pause) {
+  int MAX_COUNT = sizeof(melody);
+  long tempos = tempo;
+  int pauses = pause;
+  int note;
+  int beat;
+  long duration;
+
+  for (int i = 0; i < MAX_COUNT; i++) {
+    note = melody[i];
+    beat = beats[i];
+    duration = tempos / beat; // Set up timing
+    playNote(note, duration);
+    delayMicroseconds(pauses);
+  }
+}
+
+void excited() {
+  int excited[] = {955, 758, 638, 638, 758, 638};
+  int beats[] = {8, 8, 8, 4, 10, 8};
+  int MAX_COUNT = sizeof(excited);
+  long tempo = 1000;
+  int pause = 700;
+  int note;
+  int beat;
+  long duration;
+
+  for (int i = 0; i < MAX_COUNT; i++) {
+    note = excited[i];
+    beat = beats[i];
+    duration = tempo / beat; // Set up timing
+    playNote(note, duration);
+    delayMicroseconds(pause);
+  }
 }
 
 long readVccMilliVolts() {
@@ -210,7 +292,7 @@ int readIR(int indexOfIRSensor)
   int reading = analogRead(MUX_OUTPUT);
   digitalWrite(5, LOW);
 
-  return analogRead(MUX_OUTPUT);
+  return reading;
 }
 
 byte setMotorState(byte selectedMotorState, byte speedM1, byte speedM2)
@@ -339,14 +421,22 @@ void receiveData() {
         setMotorState(0, 0, 0);
         mode = 0;
         break;
+      case 82: //character "R"
+        excited();
+        break;
+      case 83: //character "S"
+        mode = 2;
+        break;
+      case 84: //character "T"
+        digitalWrite(FRONT_LEFT_LED, LOW);
+        digitalWrite(FRONT_RIGHT_LED, LOW);
+        break;
+      case 85: //character "U"
+        digitalWrite(FRONT_LEFT_LED, HIGH);
+        digitalWrite(FRONT_RIGHT_LED, HIGH);
+        break;
       default:
         break;
     }
   }
 }
-
-void sendData(){
-  if(mode>0) Wire.write(1);
-  Wire.write(0);
-}
-

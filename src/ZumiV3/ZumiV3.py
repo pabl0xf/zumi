@@ -75,3 +75,21 @@ def playExcited():
         bus.write_byte(address, 82)
     except IOError:
         return playExcited()
+
+def beginJediDrive():
+    try:
+        bus.write_byte(address, 83)
+    except IOError:
+        return beginJediDrive()
+
+def headlightsOff():
+    try:
+        bus.write_byte(address, 84)
+    except IOError:
+        return headlightsOff()
+
+def headlightsOn():
+    try:
+        bus.write_byte(address, 85)
+    except IOError:
+        return headlightsOn()
