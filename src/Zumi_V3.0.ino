@@ -427,6 +427,14 @@ void receiveData() {
       case 83: //character "S"
         mode = 2;
         break;
+      case 84: //character "T"
+        digitalWrite(FRONT_LEFT_LED, LOW);
+        digitalWrite(FRONT_RIGHT_LED, LOW);
+        break;
+      case 85: //character "U"
+        digitalWrite(FRONT_LEFT_LED, HIGH);
+        digitalWrite(FRONT_RIGHT_LED, HIGH);
+        break;
       default:
         break;
     }
