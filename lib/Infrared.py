@@ -1,6 +1,6 @@
 import sys
-sys.path.insert(0,'/home/pi/zumi/src')
-import Linky_SerialCom as linky
+sys.path.insert(0,'/home/pi/zumi/src/ZumiV3/')
+import ZumiV3 as linky
 import time
 
 def get_front_distance():
