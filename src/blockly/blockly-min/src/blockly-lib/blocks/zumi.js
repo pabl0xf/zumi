@@ -355,6 +355,50 @@ Blockly.Blocks["zumi_camera_show_senior"] = {
   }
 };
 
+Blockly.Blocks["zumi_engine_set_speed_junior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "set speed %1",
+      args0: [
+        {
+          type: "field_number",
+          name: "NUM0",
+          value: 20,
+          min: 20,
+          max: 100
+        }
+      ],
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
+Blockly.Blocks["zumi_engine_set_speed_senior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "set_speed(%1)",
+      args0: [
+        {
+          type: "field_number",
+          name: "NUM0",
+          value: 20,
+          min: 20,
+          max: 100
+        }
+      ],
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
 Blockly.Blocks["zumi_get_distance_junior"] = {
   init: function() {
     this.jsonInit({
