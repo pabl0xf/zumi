@@ -1052,7 +1052,7 @@ div.master-toolbox
 }
 
 .blocklyTreeLabel.camera {
-  background-image: url(images/icons/comp-vis.svg);
+  background-image: url(images/icons/camera.png);
 }
 
 .blocklyTreeLabel.sensors {
@@ -1108,7 +1108,7 @@ div.master-toolbox
   background-image: url(images/icons/status_checkers_icon.svg);
 }
 
-.blocklyTreeLabel.audio {
+.blocklyTreeLabel.speaker {
   background-image: url(images/icons/sound_icon.svg);
 }
 
@@ -1116,7 +1116,7 @@ div.master-toolbox
   background-image: url(images/icons/flight_seq_icon.svg);
 }
 
-.blocklyTreeLabel.deep-learning {
+.blocklyTreeLabel.lights {
   background-image: url(images/icons/sensor_icon.svg);
 }
 
