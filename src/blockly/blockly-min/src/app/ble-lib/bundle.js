@@ -5751,7 +5751,7 @@ global.RUN_ONLY_DISPLAY_BLOCKS = false;
 global.DISPLAY_INTERVAL = false;
 global.KEY_PRESSED = -1;
 global.DEVICE_TYPE = "zumi";
-global.ZUMI_IMPORT_STATEMENT = "import sys\nsys.path.insert(0,'/home/pi/zumi/lib')\nimport Engine as engine\nimport Infrared as infrared\nimport Camera as camera\n\n";
+global.ZUMI_IMPORT_STATEMENT = "import sys\nsys.path.insert(0,'/home/pi/zumi/lib')\nimport Engine as engine\nimport Speaker as speaker\nimport Lights as lights\nimport Infrared as infrared\nimport Camera as camera\n\n";
 global.CODRONE_IMPORT_STATEMENT = "import CoDrone\n\ndrone = CoDrone.CoDrone()\ndrone.pair(drone.Nearest)\n\n";
 global.BACKGROUND_RUNNING = false;
 global.ZUMI_CURRENT_VIEW = "junior";

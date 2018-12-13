@@ -275,20 +275,18 @@
 
   <xml id="juniorZumiXml" style="display: none">
     <category name="Engine" >
-      <block type="zumi_turn_degree_junior"></block>
       <block type="zumi_turn_left_junior"></block>
       <block type="zumi_turn_right_junior"></block>
       <block type="zumi_forward_junior"></block>
-      <block type="zumi_forward_duration_junior"></block>
       <block type="zumi_reverse_junior"></block>
-      <block type="zumi_reverse_duration_junior"></block>
       <block type="zumi_engine_set_speed_junior"></block>
       <block type="zumi_stop_junior"></block>
     </category>
     <category name="Infrared" >
-      <block type="zumi_get_distance_junior"></block>
+      <block type="zumi_jedi_drive_junior"></block>
+      <!-- <block type="zumi_get_distance_junior"></block> -->
     </category>
-    <category name="Audio" >
+    <category name="Speaker" >
       <block type="zumi_play_sound_junior"></block>
     </category>
     <category name="Personality" >
@@ -299,10 +297,14 @@
       <block type="zumi_camera_show_junior"></block>
       <block type="zumi_take_photo_junior"></block>
     </category>
-    <category name="Deep Learning" >
+    <category name="Lights" >
+      <block type="zumi_lights_on_junior"></block>
+      <block type="zumi_lights_off_junior"></block>
+    </category>
+    <!-- <category name="Deep Learning" >
       <block type="zumi_smile_detected_junior"></block>
       <block type="zumi_collect_smile_junior"></block>
-    </category>
+    </category> -->
     <category name="%{BKY_CATLOGIC}" >
       <block type="text_print"></block>
       <block type="text"></block>
@@ -438,7 +440,6 @@
 
   <xml id="seniorZumiXml" style="display: none">
     <category name="Engine" >
-      <block type="zumi_turn_degree_senior"></block>
       <block type="zumi_turn_left_senior"></block>
       <block type="zumi_turn_right_senior"></block>
       <block type="zumi_forward_senior"></block>
@@ -449,9 +450,9 @@
       <block type="zumi_stop_senior"></block>
     </category>
     <category name="Infrared" >
-      <block type="zumi_get_distance_senior"></block>
+      <block type="zumi_jedi_drive_senior"></block>
     </category>
-    <category name="Audio" >
+    <category name="Speaker" >
       <block type="zumi_play_sound_senior"></block>
     </category>
     <category name="Personality" >
@@ -462,9 +463,9 @@
       <block type="zumi_camera_show_senior"></block>
       <block type="zumi_take_photo_senior"></block>
     </category>
-    <category name="Deep Learning" >
-      <block type="zumi_smile_detected_senior"></block>
-      <block type="zumi_collect_smile_senior"></block>
+    <category name="Lights" >
+      <block type="zumi_lights_on_senior"></block>
+      <block type="zumi_lights_off_senior"></block>
     </category>
     <category name="%{BKY_CATLOGIC}" >
       <block type="controls_if"></block>
