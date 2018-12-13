@@ -339,7 +339,7 @@ button {
   padding: 10px;
   height: 40px;
   display: block;
-  width: 120px;
+  width: 220px;
   left: 287px;
   position: absolute;
   top: 16px;
@@ -909,7 +909,8 @@ div.master-toolbox
 
 #forceLanding,
 #runButton,
-#runButtonDisabled {
+#runButtonDisabled,
+#restartButton {
   background: #fff;
   border-color: #ccc;
   width: 40px;
@@ -925,6 +926,15 @@ div.master-toolbox
   left: 138px;
   top: -49px;
   position: relative;
+}
+
+.restartButton {
+  display: inline-block;
+  left: 95px;
+  top: -49px;
+  position: relative;
+  width: 60px;
+  text-align: center;
 }
 
 .playButton {
@@ -955,7 +965,8 @@ div.master-toolbox
 }
 
 .forceLanding span,
-.playButton span {
+.playButton span,
+.restartButton span {
   display: block;
   color: gray;
   font-size: 11px;
@@ -993,6 +1004,16 @@ div.master-toolbox
   background-image: url("images/icons/play.svg");
   background-repeat: no-repeat;
   background-position: 12px 6px;
+  background-size: 20px;
+}
+
+#restartButton {
+  padding: 4px 5px;
+  font-size: 18px;
+  top: -93px;
+  background-image: url("images/icons/icon_flycircle.svg");
+  background-repeat: no-repeat;
+  background-position: 9px 8px;
   background-size: 20px;
 }
 

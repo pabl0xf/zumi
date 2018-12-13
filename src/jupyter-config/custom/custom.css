@@ -16,6 +16,12 @@ div.cell.selected.jupyter-soft-selected:before {
   background-color: transparent !important;
 }
 
+div.input_area {
+  max-height: 360px;
+  overflow-y: auto;
+  width: calc(100% + 15px);
+}
+
 div#site {
   height: 100% !important;
 }
@@ -59,7 +65,7 @@ select#cell_type {
 }
 
 div#run_int > button:first-child {
-  padding: 4px 5px;
+  padding: 5px 6px;
   font-size: 18px;
   top: -7px;
   margin-right: 5px;
@@ -141,6 +147,7 @@ div#notebook-container > div:nth-child(n + 2) {
   background-color: #000;
   -webkit-box-shadow: none;
   box-shadow: none;
+  padding-right: 0px;
 }
 
 div.cell {
@@ -158,10 +165,8 @@ div.output_area pre {
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
-  /* Light grey */
-  border-top: 16px solid #3498db;
-  /* Blue */
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
   width: 120px;
   position: absolute;
@@ -174,8 +179,37 @@ div.output_area pre {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
+}
+
+button.btn.btn-default:nth-child(3) {
+  padding: 4px 18px;
+  font-size: 19px;
+  top: -7px;
+  margin-right: 5px;
+  background-image: url("icon_flycircle.svg");
+  background-repeat: no-repeat;
+  background-position: 17px 6px;
+  background-size: 20px;
+  //display: none;
+}
+
+button.btn.btn-default:nth-child(3) > .fa {
+  color: transparent;
+}
+
+button.btn.btn-default:nth-child(4) {
+  display: none;
+}
+
+.output_subarea.output_png {
+  margin: auto;
+  position: absolute;
+  left: 50%;
+}
+
+.output_subarea.output_png img {
+  border: 3px solid white;
 }

@@ -159,23 +159,6 @@ module.exports = function (it) {
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var store = __webpack_require__(60)('wks');
-var uid = __webpack_require__(40);
-var Symbol = __webpack_require__(2).Symbol;
-var USE_SYMBOL = typeof Symbol == 'function';
-
-var $exports = module.exports = function (name) {
-  return store[name] || (store[name] =
-    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
-};
-
-$exports.store = store;
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports) {
 
 var g;
@@ -199,6 +182,23 @@ try {
 // easier to handle this case. if(!global) { ...}
 
 module.exports = g;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var store = __webpack_require__(60)('wks');
+var uid = __webpack_require__(40);
+var Symbol = __webpack_require__(2).Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
+
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+};
+
+$exports.store = store;
 
 
 /***/ }),
@@ -897,7 +897,7 @@ var flyVars = {
 exports.dataLedMode = ledMode;
 exports.flyVariables = flyVars;
 exports.ledColorRGB = ledColorRGB;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 33 */
@@ -932,7 +932,7 @@ if (__webpack_require__(8)) {
   var gOPN = __webpack_require__(45).f;
   var getIterFn = __webpack_require__(94);
   var uid = __webpack_require__(40);
-  var wks = __webpack_require__(5);
+  var wks = __webpack_require__(6);
   var createArrayMethod = __webpack_require__(29);
   var createArrayIncludes = __webpack_require__(61);
   var speciesConstructor = __webpack_require__(68);
@@ -1697,7 +1697,7 @@ var meta = module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.31 Array.prototype[@@unscopables]
-var UNSCOPABLES = __webpack_require__(5)('unscopables');
+var UNSCOPABLES = __webpack_require__(6)('unscopables');
 var ArrayProto = Array.prototype;
 if (ArrayProto[UNSCOPABLES] == undefined) __webpack_require__(14)(ArrayProto, UNSCOPABLES, {});
 module.exports = function (key) {
@@ -1891,7 +1891,7 @@ var CommandManager = function () {
 }();
 
 var commandManager = exports.commandManager = new CommandManager();
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 39 */
@@ -2020,7 +2020,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 var global = __webpack_require__(2);
 var dP = __webpack_require__(9);
 var DESCRIPTORS = __webpack_require__(8);
-var SPECIES = __webpack_require__(5)('species');
+var SPECIES = __webpack_require__(6)('species');
 
 module.exports = function (KEY) {
   var C = global[KEY];
@@ -2177,7 +2177,7 @@ exports.bytesHover = dataArrayHover;
 
 var def = __webpack_require__(9).f;
 var has = __webpack_require__(13);
-var TAG = __webpack_require__(5)('toStringTag');
+var TAG = __webpack_require__(6)('toStringTag');
 
 module.exports = function (it, tag, stat) {
   if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
@@ -2305,7 +2305,7 @@ exports.f = {}.propertyIsEnumerable;
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
 var cof = __webpack_require__(22);
-var TAG = __webpack_require__(5)('toStringTag');
+var TAG = __webpack_require__(6)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
 
@@ -2430,7 +2430,7 @@ var KeyPressManager = function () {
 }();
 
 var keyPressManager = exports.keyPressManager = new KeyPressManager();
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 60 */
@@ -2498,7 +2498,7 @@ module.exports = Array.isArray || function isArray(arg) {
 // 7.2.8 IsRegExp(argument)
 var isObject = __webpack_require__(4);
 var cof = __webpack_require__(22);
-var MATCH = __webpack_require__(5)('match');
+var MATCH = __webpack_require__(6)('match');
 module.exports = function (it) {
   var isRegExp;
   return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : cof(it) == 'RegExp');
@@ -2509,7 +2509,7 @@ module.exports = function (it) {
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ITERATOR = __webpack_require__(5)('iterator');
+var ITERATOR = __webpack_require__(6)('iterator');
 var SAFE_CLOSING = false;
 
 try {
@@ -2563,7 +2563,7 @@ var hide = __webpack_require__(14);
 var redefine = __webpack_require__(15);
 var fails = __webpack_require__(3);
 var defined = __webpack_require__(26);
-var wks = __webpack_require__(5);
+var wks = __webpack_require__(6);
 
 module.exports = function (KEY, length, exec) {
   var SYMBOL = wks(KEY);
@@ -2595,7 +2595,7 @@ module.exports = function (KEY, length, exec) {
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject = __webpack_require__(1);
 var aFunction = __webpack_require__(12);
-var SPECIES = __webpack_require__(5)('species');
+var SPECIES = __webpack_require__(6)('species');
 module.exports = function (O, D) {
   var C = anObject(O).constructor;
   var S;
@@ -3115,7 +3115,7 @@ var Iterators = __webpack_require__(53);
 var $iterCreate = __webpack_require__(89);
 var setToStringTag = __webpack_require__(51);
 var getPrototypeOf = __webpack_require__(19);
-var ITERATOR = __webpack_require__(5)('iterator');
+var ITERATOR = __webpack_require__(6)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
@@ -3189,7 +3189,7 @@ var setToStringTag = __webpack_require__(51);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(14)(IteratorPrototype, __webpack_require__(5)('iterator'), function () { return this; });
+__webpack_require__(14)(IteratorPrototype, __webpack_require__(6)('iterator'), function () { return this; });
 
 module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
@@ -3215,7 +3215,7 @@ module.exports = function (that, searchString, NAME) {
 /* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MATCH = __webpack_require__(5)('match');
+var MATCH = __webpack_require__(6)('match');
 module.exports = function (KEY) {
   var re = /./;
   try {
@@ -3235,7 +3235,7 @@ module.exports = function (KEY) {
 
 // check on default Array iterator
 var Iterators = __webpack_require__(53);
-var ITERATOR = __webpack_require__(5)('iterator');
+var ITERATOR = __webpack_require__(6)('iterator');
 var ArrayProto = Array.prototype;
 
 module.exports = function (it) {
@@ -3263,7 +3263,7 @@ module.exports = function (object, index, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof = __webpack_require__(58);
-var ITERATOR = __webpack_require__(5)('iterator');
+var ITERATOR = __webpack_require__(6)('iterator');
 var Iterators = __webpack_require__(53);
 module.exports = __webpack_require__(24).getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR]
@@ -4018,7 +4018,7 @@ module.exports = !__webpack_require__(8) && !__webpack_require__(3)(function () 
 /* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports.f = __webpack_require__(5);
+exports.f = __webpack_require__(6);
 
 
 /***/ }),
@@ -4809,7 +4809,7 @@ var isArray = __webpack_require__(63);
 var isObject = __webpack_require__(4);
 var toLength = __webpack_require__(10);
 var ctx = __webpack_require__(21);
-var IS_CONCAT_SPREADABLE = __webpack_require__(5)('isConcatSpreadable');
+var IS_CONCAT_SPREADABLE = __webpack_require__(6)('isConcatSpreadable');
 
 function flattenIntoArray(target, original, source, sourceLen, start, depth, mapper, thisArg) {
   var targetIndex = start;
@@ -5750,7 +5750,7 @@ global.PROGRAM_IS_RUNNING = false;
 global.RUN_ONLY_DISPLAY_BLOCKS = false;
 global.DISPLAY_INTERVAL = false;
 global.KEY_PRESSED = -1;
-global.DEVICE_TYPE = "codrone";
+global.DEVICE_TYPE = "zumi";
 global.ZUMI_IMPORT_STATEMENT = "import sys\nsys.path.insert(0,'/home/pi/zumi/lib')\nimport Engine as engine\nimport Infrared as infrared\nimport Camera as camera\n\n";
 global.CODRONE_IMPORT_STATEMENT = "import CoDrone\n\ndrone = CoDrone.CoDrone()\ndrone.pair(drone.Nearest)\n\n";
 global.BACKGROUND_RUNNING = false;
@@ -5922,7 +5922,7 @@ global.COLORS = {
   Violet: 135,
   Yellow: 139
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 151 */
@@ -6219,7 +6219,7 @@ var _SelectDevice2 = _interopRequireDefault(_SelectDevice);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_ConnectionBox2.default, null), document.getElementById("connectMenu"));
+//ReactDOM.render(<ConnectionBox />, document.getElementById("connectMenu"));
 
 _reactDom2.default.render(_react2.default.createElement(_SelectDevice2.default, null), document.getElementById("selectDevice"));
 
@@ -6266,7 +6266,7 @@ define(String.prototype, "padRight", "".padEnd);
 "pop,reverse,shift,keys,values,entries,indexOf,every,some,forEach,map,filter,find,findIndex,includes,join,slice,concat,push,splice,unshift,sort,lastIndexOf,reduce,reduceRight,copyWithin,fill".split(",").forEach(function (key) {
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 156 */
@@ -6488,7 +6488,7 @@ var $fails = __webpack_require__(3);
 var shared = __webpack_require__(60);
 var setToStringTag = __webpack_require__(51);
 var uid = __webpack_require__(40);
-var wks = __webpack_require__(5);
+var wks = __webpack_require__(6);
 var wksExt = __webpack_require__(106);
 var wksDefine = __webpack_require__(77);
 var enumKeys = __webpack_require__(158);
@@ -6950,7 +6950,7 @@ $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(81).set });
 // 19.1.3.6 Object.prototype.toString()
 var classof = __webpack_require__(58);
 var test = {};
-test[__webpack_require__(5)('toStringTag')] = 'z';
+test[__webpack_require__(6)('toStringTag')] = 'z';
 if (test + '' != '[object z]') {
   __webpack_require__(15)(Object.prototype, 'toString', function toString() {
     return '[object ' + classof(this) + ']';
@@ -6998,7 +6998,7 @@ NAME in FProto || __webpack_require__(8) && dP(FProto, NAME, {
 
 var isObject = __webpack_require__(4);
 var getPrototypeOf = __webpack_require__(19);
-var HAS_INSTANCE = __webpack_require__(5)('hasInstance');
+var HAS_INSTANCE = __webpack_require__(6)('hasInstance');
 var FunctionProto = Function.prototype;
 // 19.2.3.6 Function.prototype[@@hasInstance](V)
 if (!(HAS_INSTANCE in FunctionProto)) __webpack_require__(9).f(FunctionProto, HAS_INSTANCE, { value: function (O) {
@@ -8108,7 +8108,7 @@ if (new Date(NaN) + '' != INVALID_DATE) {
 /* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var TO_PRIMITIVE = __webpack_require__(5)('toPrimitive');
+var TO_PRIMITIVE = __webpack_require__(6)('toPrimitive');
 var proto = Date.prototype;
 
 if (!(TO_PRIMITIVE in proto)) __webpack_require__(14)(proto, TO_PRIMITIVE, __webpack_require__(239));
@@ -8318,7 +8318,7 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 
 var isObject = __webpack_require__(4);
 var isArray = __webpack_require__(63);
-var SPECIES = __webpack_require__(5)('species');
+var SPECIES = __webpack_require__(6)('species');
 
 module.exports = function (original) {
   var C;
@@ -8579,7 +8579,7 @@ var re2 = /a/g;
 var CORRECT_NEW = new $RegExp(re1) !== re1;
 
 if (__webpack_require__(8) && (!CORRECT_NEW || __webpack_require__(3)(function () {
-  re2[__webpack_require__(5)('match')] = false;
+  re2[__webpack_require__(6)('match')] = false;
   // RegExp constructor can alter flags and IsRegExp works correct with @@match
   return $RegExp(re1) != re1 || $RegExp(re2) == re2 || $RegExp(re1, 'i') != '/a/i';
 }))) {
@@ -8802,7 +8802,7 @@ var USE_NATIVE = !!function () {
   try {
     // correct subclassing with @@species support
     var promise = $Promise.resolve(1);
-    var FakePromise = (promise.constructor = {})[__webpack_require__(5)('species')] = function (exec) {
+    var FakePromise = (promise.constructor = {})[__webpack_require__(6)('species')] = function (exec) {
       exec(empty, empty);
     };
     // unhandled rejections tracking support, NodeJS Promise without it fails @@species test
@@ -10469,7 +10469,7 @@ var $export = __webpack_require__(0);
 var global = __webpack_require__(2);
 var core = __webpack_require__(24);
 var microtask = __webpack_require__(99)();
-var OBSERVABLE = __webpack_require__(5)('observable');
+var OBSERVABLE = __webpack_require__(6)('observable');
 var aFunction = __webpack_require__(12);
 var anObject = __webpack_require__(1);
 var anInstance = __webpack_require__(47);
@@ -10712,7 +10712,7 @@ var redefine = __webpack_require__(15);
 var global = __webpack_require__(2);
 var hide = __webpack_require__(14);
 var Iterators = __webpack_require__(53);
-var wks = __webpack_require__(5);
+var wks = __webpack_require__(6);
 var ITERATOR = wks('iterator');
 var TO_STRING_TAG = wks('toStringTag');
 var ArrayValues = Iterators.Array;
@@ -11507,7 +11507,7 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
   typeof self === "object" ? self : this
 );
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 354 */
@@ -29247,7 +29247,7 @@ Code.init = function () {
   }
 
   // Construct the toolbox XML.
-  var toolboxText = document.getElementById("juniorXml").outerHTML;
+  var toolboxText = document.getElementById("juniorZumiXml").outerHTML;
   var toolboxXml = Blockly.Xml.textToDom(toolboxText);
 
   Code.workspace = Blockly.inject("content_blocks", {
@@ -29501,7 +29501,7 @@ document.write('<script src="msg/' + Code.LANG + '.js"></script>\n');
 document.write('<script src="../../msg/js/' + Code.LANG + '.js"></script>\n');
 
 window.addEventListener("load", Code.init);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 369 */
@@ -29545,7 +29545,7 @@ function dynamicClass(name) {
 global.runJS = function () {
   Code.runJS();
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 371 */
@@ -30360,7 +30360,7 @@ global.removeFlightIntervals = function () {
   clearInterval(flightInteface.goToHeightIntevalId);
   clearInterval(flightInteface.intervalId);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 372 */
@@ -30573,7 +30573,7 @@ var Go = function (_Command) {
 }(_command2.default);
 
 exports.default = Go;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 374 */
@@ -31442,7 +31442,7 @@ sequencesInteface.spiral = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.ma
     }
   }, _callee18, this);
 }));
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 379 */
@@ -31570,7 +31570,7 @@ global.getYaw = function () {
 global.getThrottle = function () {
   return _data.flyVariables.throttle;
 }.bind(undefined);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 380 */
@@ -32010,7 +32010,7 @@ global.resetDefaultLED = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark
     }
   }, _callee14, this);
 })).bind(undefined);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 381 */
@@ -32584,7 +32584,7 @@ global.setWorkspaceInterval = function () {
     return _ref3.apply(this, arguments);
   };
 }();
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 386 */
@@ -33237,7 +33237,7 @@ global.isCodeRunning = function () {
 global.getKeyPressed = function (arg) {
   return global.KEY_PRESSED == arg;
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 394 */
@@ -33272,7 +33272,7 @@ global.onEvent = function (eventType, callback) {
 global.onKeyPressEvent = function (keyCode, callback) {
    _keyPressManager.keyPressManager.addKeyPressCode(keyCode, callback);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 395 */
@@ -33356,7 +33356,7 @@ var LowBattery = function () {
 }();
 
 exports.default = LowBattery;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 396 */
@@ -33690,7 +33690,7 @@ var ConnectionBox = function (_Component) {
 }(_react.Component);
 
 exports.default = ConnectionBox;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 397 */
@@ -33746,10 +33746,24 @@ var Burger = function (_React$Component) {
     // This binding is necessary to make `this` work in the callback
     _this.handleClick = _this.handleClick.bind(_this);
     _this.handleRunClick = _this.handleRunClick.bind(_this);
+    _this.handleRestartClick = _this.handleRestartClick.bind(_this);
     return _this;
   }
 
   _createClass(Burger, [{
+    key: "handleRestartClick",
+    value: function handleRestartClick() {
+      if (global.DEVICE_TYPE === "zumi") {
+        var codeString = ZUMI_IMPORT_STATEMENT;
+        codeString = codeString + Blockly.Python.workspaceToCode(Code.workspace);
+        var encodedString = window.btoa(unescape(encodeURIComponent(codeString)));
+
+        var jupyterConsoleFrame = document.getElementById("iframeJupyterConsole").contentWindow;
+        jupyterConsoleFrame.postMessage(encodedString + "RESTART=TRUE", "*");
+        return;
+      }
+    }
+  }, {
     key: "handleClick",
     value: function handleClick(el) {
       var menuElement = el.target.parentElement.parentElement.getElementsByClassName("menu")[0];
@@ -33823,8 +33837,17 @@ var Burger = function (_React$Component) {
       }
     }
   }, {
-    key: "handleForceLandingClick",
-    value: function handleForceLandingClick(el, skipLanding, eventChange) {
+    key: "handleStopClick",
+    value: function handleStopClick(el, skipLanding, eventChange) {
+      if (global.DEVICE_TYPE === "zumi") {
+        var codeString = ZUMI_IMPORT_STATEMENT;
+        codeString = codeString + Blockly.Python.workspaceToCode(Code.workspace);
+        var encodedString = window.btoa(unescape(encodeURIComponent(codeString)));
+
+        var jupyterConsoleFrame = document.getElementById("iframeJupyterConsole").contentWindow;
+        jupyterConsoleFrame.postMessage(encodedString + "STOP=TRUE", "*");
+        return;
+      }
       _eventManager.eventManager.removeAllEvents();
 
       global.stopExecution(false);
@@ -33895,11 +33918,11 @@ var Burger = function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       $(document).on("stopExternalEvent", function () {
-        this.handleForceLanding(null, true);
+        //this.handleForceLanding(null, true);
       }.bind(this));
 
       $(document).on("eventChangeExternalEvent", function () {
-        this.handleForceLanding(null, true, true);
+        //this.handleForceLanding(null, true, true);
       }.bind(this));
     }
   }, {
@@ -33982,7 +34005,7 @@ var Burger = function (_React$Component) {
           _react2.default.createElement("button", {
             type: "button",
             id: "forceLanding",
-            onClick: this.handleForceLandingClick,
+            onClick: this.handleStopClick,
             className: "btn btn-danger navbar-btn"
           }),
           _react2.default.createElement(
@@ -34010,6 +34033,21 @@ var Burger = function (_React$Component) {
             { className: "running" },
             "Code running.."
           )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "restartButton" },
+          _react2.default.createElement("button", {
+            type: "button",
+            id: "restartButton",
+            onClick: this.handleRestartClick,
+            className: "btn btn-danger navbar-btn"
+          }),
+          _react2.default.createElement(
+            "span",
+            null,
+            " Restart "
+          )
         )
       );
     }
@@ -34019,7 +34057,7 @@ var Burger = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Burger;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 398 */
@@ -34308,7 +34346,7 @@ var Panel = function (_React$Component4) {
 }(_react2.default.Component);
 
 exports.default = Panel;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 399 */
@@ -34371,14 +34409,14 @@ var ContentJupyter = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ContentJupyter;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(global) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -34405,21 +34443,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MasterWorkspace = function (_React$Component) {
   _inherits(MasterWorkspace, _React$Component);
 
-  function MasterWorkspace() {
+  function MasterWorkspace(props) {
     _classCallCheck(this, MasterWorkspace);
 
-    return _possibleConstructorReturn(this, (MasterWorkspace.__proto__ || Object.getPrototypeOf(MasterWorkspace)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (MasterWorkspace.__proto__ || Object.getPrototypeOf(MasterWorkspace)).call(this, props));
   }
 
   _createClass(MasterWorkspace, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.state = { typeDevice: "codrone" };
-      this.handleChange = this.handleChange.bind(this);
+      var zumiUrl = null;
+      var hostName = window.location.protocol + "//" + window.location.hostname;
+
+      //hostName = "http://192.168.3.155";
+
+      zumiUrl = hostName + ":5555/notebooks/blockly.ipynb";
+
+      global.ZUMI_URL = zumiUrl;
+
+      document.getElementById("iframeJupyter").src = zumiUrl;
     }
-  }, {
-    key: "handleChange",
-    value: function handleChange(el) {}
   }, {
     key: "render",
     value: function render() {
@@ -34427,10 +34470,7 @@ var MasterWorkspace = function (_React$Component) {
         "div",
         { className: "master-workspace" },
         _react2.default.createElement("div", { className: "loader" }),
-        _react2.default.createElement("iframe", {
-          id: "iframeJupyter",
-          src: "http://zumi.local:5555/notebooks/blockly.ipynb"
-        })
+        _react2.default.createElement("iframe", { id: "iframeJupyter", src: "" })
       );
     }
   }]);
@@ -34439,6 +34479,7 @@ var MasterWorkspace = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = MasterWorkspace;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 401 */
@@ -34477,7 +34518,7 @@ var MasterToolbox = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (MasterToolbox.__proto__ || Object.getPrototypeOf(MasterToolbox)).call(this, props));
 
-    _this.state = { typeDevice: "codrone", deviceType: 1 };
+    _this.state = { typeDevice: "zumi", deviceType: 2 };
     _this.toggleOption = _this.toggleOption.bind(_this);
     _this.toggleFromIcon = _this.toggleFromIcon.bind(_this);
     return _this;
@@ -34788,14 +34829,14 @@ var MasterToolbox = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = MasterToolbox;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(global) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -34822,21 +34863,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var JupyterConsole = function (_React$Component) {
   _inherits(JupyterConsole, _React$Component);
 
-  function JupyterConsole() {
+  function JupyterConsole(props) {
     _classCallCheck(this, JupyterConsole);
 
-    return _possibleConstructorReturn(this, (JupyterConsole.__proto__ || Object.getPrototypeOf(JupyterConsole)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (JupyterConsole.__proto__ || Object.getPrototypeOf(JupyterConsole)).call(this, props));
   }
 
   _createClass(JupyterConsole, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.state = { typeDevice: "codrone" };
-      this.handleChange = this.handleChange.bind(this);
+      var zumiUrl = null;
+      var hostName = window.location.protocol + "//" + window.location.hostname;
+
+      //hostName = "http://192.168.3.155";
+
+      zumiUrl = hostName + ":5555/notebooks/blockly.ipynb?out=true";
+
+      global.ZUMI_URL = zumiUrl;
+
+      document.getElementById("iframeJupyterConsole").src = zumiUrl;
     }
-  }, {
-    key: "handleChange",
-    value: function handleChange(el) {}
   }, {
     key: "render",
     value: function render() {
@@ -34848,10 +34894,7 @@ var JupyterConsole = function (_React$Component) {
           null,
           "output: "
         ),
-        _react2.default.createElement("iframe", {
-          id: "iframeJupyterConsole",
-          src: "http://zumi.local:5555/notebooks/blockly.ipynb?out=true"
-        })
+        _react2.default.createElement("iframe", { id: "iframeJupyterConsole", src: "" })
       );
     }
   }]);
@@ -34860,6 +34903,7 @@ var JupyterConsole = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = JupyterConsole;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 403 */
@@ -34899,7 +34943,7 @@ var SelectDevice = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SelectDevice.__proto__ || Object.getPrototypeOf(SelectDevice)).call(this, props));
 
     var paramGetZumi = location.search.split("zumi=")[1];
-    var deviceType = paramGetZumi ? "zumi" : "codrone";
+    var deviceType = paramGetZumi ? "codrone" : "zumi";
     _this.state = { typeDevice: deviceType };
     _this.handleChange = _this.handleChange.bind(_this);
     return _this;
@@ -34908,13 +34952,11 @@ var SelectDevice = function (_React$Component) {
   _createClass(SelectDevice, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (this.state.typeDevice === "zumi") {
-        this.handleChange({ target: { value: "zumi" } });
-        setTimeout(function () {
-          var currentTab = "#" + global.ZUMI_CURRENT_VIEW + "XmlBtn";
-          $(currentTab).trigger("click");
-        }.bind(this), 400);
-      }
+      this.handleChange({ target: { value: "zumi" } });
+      setTimeout(function () {
+        var currentTab = "#" + global.ZUMI_CURRENT_VIEW + "XmlBtn";
+        $(currentTab).trigger("click");
+      }.bind(this), 400);
     }
   }, {
     key: "handleChange",
@@ -34959,7 +35001,7 @@ var SelectDevice = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = SelectDevice;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ })
 /******/ ]);

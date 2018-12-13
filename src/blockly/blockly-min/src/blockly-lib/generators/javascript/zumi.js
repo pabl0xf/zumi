@@ -183,3 +183,13 @@ Blockly.JavaScript["zumi_camera_show_junior"] = function(block) {
 Blockly.JavaScript["zumi_camera_show_senior"] = function(block) {
   return "await show()\n";
 };
+
+Blockly.JavaScript["zumi_get_distance_junior"] = function(block) {
+  var arg0 = block.getFieldValue("NUM0");
+  return "engine.set_speed(" + arg0 + ")\n";
+};
+
+Blockly.JavaScript["zumi_get_distance_senior"] = function(block) {
+  var arg0 = block.getFieldValue("NUM0");
+  return "engine.set_speed(" + arg0 + ")\n";
+};
