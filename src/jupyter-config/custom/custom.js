@@ -11,6 +11,18 @@ window.addEventListener("message", function(event) {
     if (Jupyter) {
       var runCommands = false;
       var commands = null;
+
+      if (event.data.search("RESTART=TRUE") !== -1) {
+        Jupyter.notebook.clear_all_output();
+        Jupyter.notebook.restart_kernel({ confirm: false });
+        return false;
+      }
+
+      if (event.data.search("STOP=TRUE") !== -1) {
+        $("#run_int button")[1].click();
+        return false;
+      }
+
       if (event.data.search("RUN=TRUE") !== -1) {
         runCommands = true;
         commands = event.data.substr(0, event.data.length - 8);
