@@ -17,7 +17,7 @@ def face_detected():
     image = cv2.flip(image, -1)
     faces = face_detector.detectMultiScale(image, 1.3, 5)
     result = type(faces) is not tuple
-    print("Detected face: " + result)
+    print("Detected face: " + str(result))
     return result
 
 def take_photo():
