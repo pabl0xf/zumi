@@ -56,11 +56,11 @@ def drive_to_landmark(landmark, model):
                     time.sleep(.1)
                     engine.forward()
                 elif iArrowDir == 3:
-                    command = "eiffel"
+                    command = "nyc"
                 elif iArrowDir == 4:
-                    command = "chicago"
+                    command = "china"
                 elif iArrowDir == 5:
-                    command = "start"
+                    command = "seattle"
                     
                 if(command == landmark):
                     print("found " + landmark + "!")
