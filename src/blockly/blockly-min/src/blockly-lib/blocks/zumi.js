@@ -94,7 +94,7 @@ Blockly.Blocks["zumi_turn_degree_senior"] = {
 Blockly.Blocks["zumi_turn_left_junior"] = {
   init: function() {
     this.jsonInit({
-      message0: "turn left",
+      message0: "left",
       previousStatement: null,
       nextStatement: null,
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
@@ -107,7 +107,7 @@ Blockly.Blocks["zumi_turn_left_junior"] = {
 Blockly.Blocks["zumi_turn_left_senior"] = {
   init: function() {
     this.jsonInit({
-      message0: "turn_left()",
+      message0: "left()",
       previousStatement: null,
       nextStatement: null,
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
@@ -120,7 +120,7 @@ Blockly.Blocks["zumi_turn_left_senior"] = {
 Blockly.Blocks["zumi_turn_right_junior"] = {
   init: function() {
     this.jsonInit({
-      message0: "turn right",
+      message0: "right",
       previousStatement: null,
       nextStatement: null,
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
@@ -133,7 +133,7 @@ Blockly.Blocks["zumi_turn_right_junior"] = {
 Blockly.Blocks["zumi_turn_right_senior"] = {
   init: function() {
     this.jsonInit({
-      message0: "turn_right()",
+      message0: "right()",
       previousStatement: null,
       nextStatement: null,
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
@@ -146,7 +146,7 @@ Blockly.Blocks["zumi_turn_right_senior"] = {
 Blockly.Blocks["zumi_forward_junior"] = {
   init: function() {
     this.jsonInit({
-      message0: "go forward forever",
+      message0: "forward",
       previousStatement: null,
       nextStatement: null,
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
@@ -214,7 +214,7 @@ Blockly.Blocks["zumi_forward_duration_senior"] = {
 Blockly.Blocks["zumi_reverse_junior"] = {
   init: function() {
     this.jsonInit({
-      message0: "reverse forever",
+      message0: "reverse",
       previousStatement: null,
       nextStatement: null,
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
@@ -228,6 +228,82 @@ Blockly.Blocks["zumi_reverse_senior"] = {
   init: function() {
     this.jsonInit({
       message0: "reverse()",
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
+Blockly.Blocks["zumi_jedi_drive_junior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "jedi drive",
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
+Blockly.Blocks["zumi_jedi_drive_senior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "jedi_drive()",
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
+Blockly.Blocks["zumi_lights_on_junior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "lights on",
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+Blockly.Blocks["zumi_lights_on_senior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "turn_on()",
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
+Blockly.Blocks["zumi_lights_off_junior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "lights off",
+      previousStatement: null,
+      nextStatement: null,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+Blockly.Blocks["zumi_lights_off_senior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "turn_off()",
       previousStatement: null,
       nextStatement: null,
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
@@ -474,7 +550,7 @@ Blockly.Blocks["zumi_play_sound_junior"] = {
 Blockly.Blocks["zumi_play_sound_senior"] = {
   init: function() {
     this.jsonInit({
-      message0: "play_sound(%1)",
+      message0: "play(%1)",
       args0: [
         {
           type: "field_dropdown",
@@ -668,6 +744,60 @@ Blockly.Blocks["zumi_collect_smile_senior"] = {
       nextStatement: null,
       tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
       colour: Blockly.Blocks.codrone.HUE,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
+Blockly.Blocks["zumi_wait_junior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "%2 wait %1 seconds",
+      args0: [
+        {
+          type: "field_number",
+          name: "NUM0",
+          value: 0
+        },
+        {
+          type: "field_image",
+          src: "images/icons/icon_wait.svg",
+          width: 25,
+          height: 25,
+          alt: "*"
+        }
+      ],
+      previousStatement: null,
+      nextStatement: null,
+      colour: Blockly.Constants.Codrone.HUE_timming,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
+      helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
+    });
+  }
+};
+
+Blockly.Blocks["zumi_wait_senior"] = {
+  init: function() {
+    this.jsonInit({
+      message0: "%2 sleep(%1 sec)",
+      args0: [
+        {
+          type: "field_number",
+          name: "NUM0",
+          value: 0
+        },
+        {
+          type: "field_image",
+          src: "images/icons/icon_wait.svg",
+          width: 25,
+          height: 25,
+          alt: "*"
+        }
+      ],
+      previousStatement: null,
+      nextStatement: null,
+      colour: Blockly.Constants.Codrone.HUE_timming,
+      tooltip: Blockly.Msg.TEXT_JOIN_TOOLTIP,
       helpUrl: Blockly.Msg.TEXT_JOIN_HELPURL
     });
   }
