@@ -169,27 +169,61 @@ Blockly.JavaScript["zumi_collect_smile_senior"] = function(block) {
 };
 
 Blockly.JavaScript["zumi_take_photo_junior"] = function(block) {
-  return "await takePhoto()\n";
+  return "await takePhoto();\n";
 };
 
 Blockly.JavaScript["zumi_take_photo_senior"] = function(block) {
-  return "await takePhoto()\n";
+  return "await takePhoto();\n";
 };
 
 Blockly.JavaScript["zumi_camera_show_junior"] = function(block) {
-  return "await show()\n";
+  return "await show();\n";
 };
 
 Blockly.JavaScript["zumi_camera_show_senior"] = function(block) {
-  return "await show()\n";
+  return "await show();\n";
 };
 
-Blockly.JavaScript["zumi_get_distance_junior"] = function(block) {
+Blockly.JavaScript["zumi_engine_set_speed_junior"] = function(block) {
   var arg0 = block.getFieldValue("NUM0");
-  return "engine.set_speed(" + arg0 + ")\n";
+  return "setSpeed(" + arg0 + ");\n";
 };
 
-Blockly.JavaScript["zumi_get_distance_senior"] = function(block) {
+Blockly.JavaScript["zumi_engine_set_speed_senior"] = function(block) {
   var arg0 = block.getFieldValue("NUM0");
-  return "engine.set_speed(" + arg0 + ")\n";
+  return "setSpeed(" + arg0 + ");\n";
+};
+
+Blockly.JavaScript["zumi_lights_on_junior"] = function(block) {
+  return "turnOn();\n";
+};
+
+Blockly.JavaScript["zumi_lights_on_senior"] = function(block) {
+  return "turnOn();\n";
+};
+
+Blockly.JavaScript["zumi_lights_off_junior"] = function(block) {
+  return "turnOff();\n";
+};
+
+Blockly.JavaScript["zumi_lights_off_senior"] = function(block) {
+  return "turnOff();\n";
+};
+
+Blockly.JavaScript["zumi_jedi_drive_junior"] = function(block) {
+  return "jediDrive();\n";
+};
+
+Blockly.JavaScript["zumi_jedi_drive_senior"] = function(block) {
+  return "jediDrive();\n";
+};
+
+Blockly.JavaScript["zumi_wait_junior"] = function(block) {
+  var arg0 = parseInt(block.getFieldValue("NUM0"));
+  return "wait(" + arg0 + ");\n";
+};
+
+Blockly.JavaScript["zumi_wait_junior"] = function(block) {
+  var arg0 = parseInt(block.getFieldValue("NUM0"));
+  return "wait(" + arg0 + ");\n";
 };

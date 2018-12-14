@@ -39,19 +39,19 @@ Blockly.Python["zumi_turn_degree_senior"] = function(block) {
 };
 
 Blockly.Python["zumi_turn_left_junior"] = function(block) {
-  return "engine.turn_left()\n";
+  return "engine.left()\n";
 };
 
 Blockly.Python["zumi_turn_left_senior"] = function(block) {
-  return "engine.turn_left()\n";
+  return "engine.left()\n";
 };
 
 Blockly.Python["zumi_turn_right_junior"] = function(block) {
-  return "engine.turn_right()\n";
+  return "engine.right()\n";
 };
 
 Blockly.Python["zumi_turn_right_senior"] = function(block) {
-  return "engine.turn_right()\n";
+  return "engine.right()\n";
 };
 
 Blockly.Python["zumi_forward_junior"] = function(block) {
@@ -108,7 +108,7 @@ Blockly.Python["zumi_get_distance_junior"] = function(block) {
 
 Blockly.Python["zumi_play_sound_junior"] = function(block) {
   var arg0 = block.getFieldValue("SOUND");
-  return "Audio.play_sound(" + arg0 + ")\n";
+  return "speaker.play(" + arg0 + ")\n";
 };
 
 Blockly.Python["zumi_personality_act_junior"] = function(block) {
@@ -147,7 +147,7 @@ Blockly.Python["zumi_get_distance_senior"] = function(block) {
 
 Blockly.Python["zumi_play_sound_senior"] = function(block) {
   var arg0 = block.getFieldValue("SOUND");
-  return "Audio.play_sound(" + arg0 + ")\n";
+  return "speaker.play(" + arg0 + ")\n";
 };
 
 Blockly.Python["zumi_personality_act_senior"] = function(block) {
@@ -184,12 +184,46 @@ Blockly.Python["zumi_camera_show_senior"] = function(block) {
   return "camera.show()\n";
 };
 
-Blockly.Python["zumi_get_distance_junior"] = function(block) {
+Blockly.Python["zumi_engine_set_speed_junior"] = function(block) {
   var arg0 = block.getFieldValue("NUM0");
   return "engine.set_speed(" + arg0 + ")\n";
 };
 
-Blockly.Python["zumi_get_distance_senior"] = function(block) {
+Blockly.Python["zumi_engine_set_speed_senior"] = function(block) {
   var arg0 = block.getFieldValue("NUM0");
   return "engine.set_speed(" + arg0 + ")\n";
+};
+
+Blockly.Python["zumi_lights_on_junior"] = function(block) {
+  return "lights.turn_on()\n";
+};
+
+Blockly.Python["zumi_lights_on_senior"] = function(block) {
+  return "lights.turn_on()\n";
+};
+
+Blockly.Python["zumi_lights_off_junior"] = function(block) {
+  return "lights.turn_off()\n";
+};
+
+Blockly.Python["zumi_lights_off_senior"] = function(block) {
+  return "lights.turn_off()\n";
+};
+
+Blockly.Python["zumi_jedi_drive_junior"] = function(block) {
+  return "infrared.jedi_drive()\n";
+};
+
+Blockly.Python["zumi_jedi_drive_senior"] = function(block) {
+  return "infrared.jedi_drive()\n";
+};
+
+Blockly.Python["zumi_wait_junior"] = function(block) {
+  var arg0 = parseInt(block.getFieldValue("NUM0"));
+  return "timer.wait(" + arg0 + ")\n";
+};
+
+Blockly.Python["zumi_wait_junior"] = function(block) {
+  var arg0 = parseInt(block.getFieldValue("NUM0"));
+  return "timer.wait(" + arg0 + ")\n";
 };
