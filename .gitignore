@@ -4,3 +4,4 @@ doc/build-images
 .ipynb_checkpoints
 zumi-snap.jpg
 src/jupyter-config/migrated
+sample/deep-learning-demos/tourist/images/
