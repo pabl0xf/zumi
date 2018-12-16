@@ -11,6 +11,10 @@ def clean_up():
     camera.shutdown() 
     engine.stop()
     exit()
+    
+if len(sys.argv) == 1:
+    print("Please use an argument with the robot name. e.g. python3 train_landmark.py jumi")
+    exit()  
 
 camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
 
@@ -18,7 +22,9 @@ engine.set_speed(50)
 
 command = ""
 
-print("ready to train!")
+    
+which_robot = sys.argv[1] 
+print("ready to train with " + which_robot + "!")
 
 try:
     while True:        
@@ -69,13 +75,15 @@ try:
             command = "start"
             engine.forward_a_bit()
             print(command + "!")
-        
-        
+        elif command == 'i':
+            command = "intersection"
+            engine.forward_a_bit()
+            print(command + "!")     
         
         engine.stop()
         
         if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle']:
-            file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + str(time.time()) + "." + command + ".jpg"
+            file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + which_robot + "." + str(time.time()) + "." + command + ".jpg"
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             cv2.imwrite(file_name, image)
         else:
