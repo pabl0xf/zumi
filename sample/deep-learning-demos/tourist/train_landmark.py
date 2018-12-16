@@ -69,12 +69,16 @@ try:
             command = "start"
             engine.forward_a_bit()
             print(command + "!")
+        elif command == 'i':
+            command = "intersection"
+            engine.forward_a_bit()
+            print(command + "!")
         
         
         
         engine.stop()
         
-        if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle']:
+        if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle', 'intersection']:
             file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + str(time.time()) + "." + command + ".jpg"
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             cv2.imwrite(file_name, image)
