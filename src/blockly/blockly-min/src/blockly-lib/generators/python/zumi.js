@@ -107,8 +107,7 @@ Blockly.Python["zumi_get_distance_junior"] = function(block) {
 };
 
 Blockly.Python["zumi_play_sound_junior"] = function(block) {
-  var arg0 = block.getFieldValue("SOUND");
-  return "speaker.play(" + arg0 + ")\n";
+  return "speaker.play()\n";
 };
 
 Blockly.Python["zumi_personality_act_junior"] = function(block) {
@@ -147,7 +146,7 @@ Blockly.Python["zumi_get_distance_senior"] = function(block) {
 
 Blockly.Python["zumi_play_sound_senior"] = function(block) {
   var arg0 = block.getFieldValue("SOUND");
-  return "speaker.play(" + arg0 + ")\n";
+  return "speaker.play()\n";
 };
 
 Blockly.Python["zumi_personality_act_senior"] = function(block) {
