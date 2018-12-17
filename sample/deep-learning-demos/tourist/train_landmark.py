@@ -82,7 +82,7 @@ try:
         
         engine.stop()
         
-        if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle']:
+        if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle', 'intersection']:
             file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + which_robot + "." + str(time.time()) + "." + command + ".jpg"
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             cv2.imwrite(file_name, image)
