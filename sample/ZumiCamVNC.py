@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/usr/local/lib/python2.7/site-packages')
+sys.path.append('/usr/local/lib/python3.5/site-packages')
 
 #this is for the pi camera to work
 from picamera.array import PiRGBArray

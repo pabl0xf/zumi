@@ -29,6 +29,9 @@ def upload_images_to_cloud():
                                     media_body=media,
                                     fields='id').execute()
             print ("  Uploaded " + file_name)
+    delete = input("Delete training images from Zumi?") 
+    if delete == 'y':
+        clear_images_from_zumi()
             
 def is_valid_image(file_name):
     return file_name.endswith(".jpg") and os.path.getsize(local_folder_path + file_name) > 0 #the image is not empty
