@@ -27,67 +27,54 @@ which_robot = sys.argv[1]
 print("ready to train with " + which_robot + "!")
 
 try:
-    while True:        
-        
-        image = camera.run()
-        image = cv2.flip(image, -1)
 
-        command = input("")            
+    while True:        
+        command = input("what?")            
+        cnt = int(input("how much?"))
 
         if command == 'w':
             command = 'up' 
-            engine.forward_a_bit()
         elif command == 'a':
             command = 'left'
-            engine.left_a_bit() 
         elif command == 's':
             command = 'right' 
-            engine.right_a_bit()
         elif command == 'e':
             command = 'eiffel'
-            engine.forward_a_bit()
-            print(command + "!")
         elif command == 'c':
             command = 'chicago'
-            engine.forward_a_bit()
-            print(command + "!")
         elif command == 't':
             command = 'seattle'
-            engine.forward_a_bit()
-            print(command + "!")
         elif command == 'n':
             command = 'nyc'
-            engine.forward_a_bit()
-            print(command + "!")
         elif command == 'z':
             command = 'china'
-            engine.forward_a_bit()
-            print(command + "!")
         elif command == 'b':
             command = 'bigben'
-            engine.forward_a_bit()
-            print(command + "!")
         elif command == 'k':
             command = 'khalifa'
-            engine.forward_a_bit()
-            print(command + "!")
         elif command == 'x':
             command = "start"
-            engine.forward_a_bit()
-            print(command + "!")
         elif command == 'i':
             command = "intersection"
-            engine.forward_a_bit()
-            print(command + "!")     
-        
-        engine.stop()
-        
-        if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle', 'intersection']:
-            file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + which_robot + "." + str(time.time()) + "." + command + ".jpg"
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-            cv2.imwrite(file_name, image)
         else:
             print("# bad command: " + command)
+            cnt = 0
+
+        print(command + "!")
+        time.sleep(1)
         
+        while cnt != 0:
+            print(cnt)
+            cnt = cnt - 1
+            image = camera.run()
+            image = cv2.flip(image, -1)
+
+            time.sleep(0.5)
+            
+            if command in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle', 'intersection']:
+                file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + which_robot + "." + str(time.time()) + "." + command + ".jpg"
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                cv2.imwrite(file_name, image)
+
 finally:
     clean_up()

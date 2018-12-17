@@ -7,7 +7,7 @@ import os
 store = file.Storage('hi.jpg')
 creds = store.get()
 if not creds or creds.invalid:
-    flow = client.flow_from_clientsecrets('credentials.json', "https://www.googleapis.com/auth/drive")
+    flow = client.flow_from_clientsecrets('/home/pi/zumi/sample/deep-learning-demos/driving/credentials.json', "https://www.googleapis.com/auth/drive")
     creds = tools.run_flow(flow, store)
 drive_service = build('drive', 'v3', http=creds.authorize(Http()))
 
