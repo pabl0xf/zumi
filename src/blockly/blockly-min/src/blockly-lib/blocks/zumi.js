@@ -526,18 +526,7 @@ Blockly.Blocks["zumi_get_distance_senior"] = {
 Blockly.Blocks["zumi_play_sound_junior"] = {
   init: function() {
     this.jsonInit({
-      message0: "play sound %1",
-      args0: [
-        {
-          type: "field_dropdown",
-          name: "SOUND",
-          options: [
-            ["happy", "Sound.HAPPY"],
-            ["sad", "Sound.SAD"],
-            ["honk", "Sound.HONK"]
-          ]
-        }
-      ],
+      message0: "play sound",
       previousStatement: null,
       nextStatement: null,
       colour: Blockly.Constants.Zumi.HUE,
@@ -550,18 +539,7 @@ Blockly.Blocks["zumi_play_sound_junior"] = {
 Blockly.Blocks["zumi_play_sound_senior"] = {
   init: function() {
     this.jsonInit({
-      message0: "play(%1)",
-      args0: [
-        {
-          type: "field_dropdown",
-          name: "SOUND",
-          options: [
-            ["happy", "Sound.HAPPY"],
-            ["sad", "Sound.SAD"],
-            ["honk", "Sound.HONK"]
-          ]
-        }
-      ],
+      message0: "play()",
       previousStatement: null,
       nextStatement: null,
       colour: Blockly.Constants.Zumi.HUE,

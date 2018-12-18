@@ -72,8 +72,7 @@ Blockly.JavaScript["zumi_get_distance_junior"] = function(block) {
 };
 
 Blockly.JavaScript["zumi_play_sound_junior"] = function(block) {
-  var arg0 = block.getFieldValue("SOUND");
-  return "await play_sound(" + arg0 + ");\n";
+  return "await play_sound();\n";
 };
 
 Blockly.JavaScript["zumi_personality_act_junior"] = function(block) {
@@ -142,8 +141,7 @@ Blockly.JavaScript["zumi_get_distance_senior"] = function(block) {
 };
 
 Blockly.JavaScript["zumi_play_sound_senior"] = function(block) {
-  var arg0 = block.getFieldValue("SOUND");
-  return "await play_sound(" + arg0 + ");\n";
+  return "await play_sound();\n";
 };
 
 Blockly.JavaScript["zumi_personality_act_senior"] = function(block) {
