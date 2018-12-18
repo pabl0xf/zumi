@@ -27,7 +27,7 @@ def drive_to_landmark(landmark, model):
     timer = FPSTimer()
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
 
-    engine.set_speed(50)
+    engine.set_speed(40)
 
     try:
         while True:
@@ -58,9 +58,17 @@ def drive_to_landmark(landmark, model):
                 elif iArrowDir == 3:
                     command = "nyc"
                 elif iArrowDir == 4:
-                    command = "china"
-                elif iArrowDir == 5:
                     command = "seattle"
+                elif iArrowDir == 5:
+                    command = "eiffel"
+                elif iArrowDir == 6:
+                    command = "bigben"
+                elif iArrowDir == 7:
+                    command = "china"
+                elif iArrowDir == 8:
+                    command = "khalifa"
+                elif iArrowDir == 9:
+                    command = "chicago"
                     
                 if(command == landmark):
                     print("found " + landmark + "!")
