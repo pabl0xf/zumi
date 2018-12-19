@@ -22,7 +22,28 @@ def load_model(which_demo):
     print("model is loaded 🥂")
     return model
 
+def get_robot_name():
+    import socket
+    hostname = socket.gethostname() 
+    return hostname
+    
+def take_a_bunch_of_pictures(camera, label):
+    cnt = 50
+    while cnt >= 0:
+        print(cnt)
+        cnt = cnt - 1
+        image = camera.run()
+        image = cv2.flip(image, -1)
+
+        if label not in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle', 'intersection']:
+            print("~invalid label~")
+        else:
+            file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + get_robot_name() + "." + str(time.time()) + "." + label + ".jpg"
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            cv2.imwrite(file_name, image)
+
 def drive_to_landmark(landmark, model):
+    timer = FPSTimer()
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
 
     engine.set_speed(40)
@@ -31,6 +52,7 @@ def drive_to_landmark(landmark, model):
         while True:
 
                 frame = camera.run()
+                timer.on_frame()
                 frame = cv2.flip(frame, -1)
 
                 #ask NN to predict control from image
