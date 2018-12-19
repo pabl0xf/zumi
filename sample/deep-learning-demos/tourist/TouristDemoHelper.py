@@ -23,7 +23,6 @@ def load_model(which_demo):
     return model
 
 def drive_to_landmark(landmark, model):
-    timer = FPSTimer()
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
 
     engine.set_speed(40)
@@ -32,7 +31,6 @@ def drive_to_landmark(landmark, model):
         while True:
 
                 frame = camera.run()
-                timer.on_frame()
                 frame = cv2.flip(frame, -1)
 
                 #ask NN to predict control from image
