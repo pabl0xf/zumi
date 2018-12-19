@@ -8,6 +8,15 @@ from TawnCam import PiCamera
 import time
 import cv2
 
+landmarks = {
+    'up':0, 'left':1, 'right':2, 
+    'nyc':3, 'seattle':4,'eiffel':5,'bigben':6, 'china':7, 'khalifa':8, 'chicago':9, 
+    'intersection':10, 'start': 11
+}
+    
+def print_landmarks():
+    print(landmarks)
+    
 def load_model(which_demo):
     from keras.models import model_from_json
     import json
@@ -35,7 +44,7 @@ def take_a_bunch_of_pictures(camera, label):
         image = camera.run()
         image = cv2.flip(image, -1)
 
-        if label not in ['up', 'left', 'right', 'eiffel', 'start', 'chicago', 'nyc', 'china', 'bigben', 'khalifa', 'seattle', 'intersection']:
+        if label not in landmarks:
             print("~invalid label~")
         else:
             file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + get_robot_name() + "." + str(time.time()) + "." + label + ".jpg"
