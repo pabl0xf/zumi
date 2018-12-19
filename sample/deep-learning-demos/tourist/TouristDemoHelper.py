@@ -40,7 +40,7 @@ def take_a_bunch_of_pictures(camera, label):
         image = camera.run()
         image = cv2.flip(image, -1)
 
-        if label not in landmarks.values:
+        if label not in landmarks.values():
             print("~invalid label~")
         else:
             file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + get_robot_name() + "." + str(time.time()) + "." + label + ".jpg"
