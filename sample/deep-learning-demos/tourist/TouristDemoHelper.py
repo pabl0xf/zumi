@@ -14,9 +14,6 @@ landmarks = {
     'intersection':10, 'start': 11
 }
     
-def print_landmarks():
-    print(landmarks)
-    
 def load_model(which_demo):
     from keras.models import model_from_json
     import json
