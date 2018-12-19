@@ -1,3 +1,13 @@
+import sys
+sys.path.insert(0,'/home/pi/zumi/lib')
+import Engine as engine
+from IPython import display 
+import numpy as np
+import PIL.Image 
+from TawnCam import PiCamera
+import time
+import cv2
+
 def load_model(which_demo):
     from keras.models import model_from_json
     import json
@@ -13,17 +23,6 @@ def load_model(which_demo):
     return model
 
 def drive_to_landmark(landmark, model):
-    import sys
-    sys.path.insert(0,'/home/pi/zumi/lib')
-    import Engine as engine
-    from IPython import display 
-    import cv2
-    import numpy as np
-    import PIL.Image 
-    from TawnTime import FPSTimer
-    from TawnCam import PiCamera
-    import time
-
     timer = FPSTimer()
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
 
