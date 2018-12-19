@@ -9,9 +9,8 @@ import time
 import cv2
 
 landmarks = {
-    'up':0, 'left':1, 'right':2, 
-    'nyc':3, 'seattle':4,'eiffel':5,'bigben':6, 'china':7, 'khalifa':8, 'chicago':9, 
-    'intersection':10, 'start': 11
+    0: 'up', 1: 'left', 2:'right', 3:'nyc', 4:'seattle', 5:'eiffel', 6:'bigben', 7:'china', 8:'khalifa', 9:'chicago', 
+    10:'intersection', 11:'start'
 }
     
 def load_model(which_demo):
@@ -34,19 +33,25 @@ def get_robot_name():
     return hostname
     
 def take_a_bunch_of_pictures(camera, label):
-    cnt = 50
+    cnt = 20
     while cnt >= 0:
         print(cnt)
         cnt = cnt - 1
         image = camera.run()
         image = cv2.flip(image, -1)
 
-        if label not in landmarks:
+        if label not in landmarks.values:
             print("~invalid label~")
         else:
             file_name = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/" + get_robot_name() + "." + str(time.time()) + "." + label + ".jpg"
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             cv2.imwrite(file_name, image)
+            
+def get_readable_predictions(predictions):
+    stringy= ""
+    for index in landmarks:
+        stringy = stringy + landmarks.get(index) + " {:.2%}".format(predictions[0][index]) + "  "
+    return stringy
 
 def drive_to_landmark(landmark, model):
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
