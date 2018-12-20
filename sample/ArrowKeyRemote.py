@@ -3,6 +3,8 @@ sys.path.insert(0,'/home/pi/zumi/lib')
 import Engine as engine
 import curses
 
+speed = input("what speed (20-100)?")
+
 # get the curses screen window
 screen = curses.initscr()
 
@@ -15,7 +17,7 @@ curses.cbreak()
 # map arrow keys to special values
 screen.keypad(True)
 
-engine.set_speed(15)
+engine.set_speed(int(speed))
 
 try:
     while True:
@@ -35,8 +37,8 @@ try:
         elif char == curses.KEY_DOWN:
             screen.addstr(0, 0, 'down ')
             engine.back_a_bit()
-        else:
-            engine.stop()
+        
+        engine.stop()
 finally:
     # shut down cleanly
     curses.nocbreak(); screen.keypad(0); curses.echo()
