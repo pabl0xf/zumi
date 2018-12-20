@@ -17,13 +17,20 @@ def right_a_bit():
     zumi.right()
     time.sleep(.1)
 
-def left_a_bit():
+def left_a_bit(robot_name="zumi"):
     zumi.left()
-    time.sleep(.1)
+    if robot_name == "whumi":
+        time.sleep(.2)   
+    else:
+        time.sleep(.1)
 
 def forward_a_bit():
     zumi.forward()
     time.sleep(.6)
+    
+def back_a_bit():
+    zumi.forward()
+    time.sleep(.1)
 
 def set_speed(s):
     zumi.setSpeed(s)
