@@ -15,7 +15,7 @@ curses.cbreak()
 # map arrow keys to special values
 screen.keypad(True)
 
-engine.set_speed(15)
+engine.set_speed(30)
 
 try:
     while True:
@@ -23,20 +23,20 @@ try:
         if char == ord('q'): 
             break
         elif char == curses.KEY_RIGHT:
-            # print doesn't work with curses, use addstr instead
             screen.addstr(0, 0, 'right')
             engine.right_a_bit()
         elif char == curses.KEY_LEFT:
             screen.addstr(0, 0, 'left ') 
             engine.left_a_bit()
         elif char == curses.KEY_UP:
-            screen.addstr(0, 0, 'up   ') 
+            screen.addstr(0, 0, 'forward   ') 
             engine.forward_a_bit()
         elif char == curses.KEY_DOWN:
-            screen.addstr(0, 0, 'down ')
+            screen.addstr(0, 0, 'reverse ')
             engine.back_a_bit()
-        else:
-            engine.stop()
+        
+        engine.stop()
+        
 finally:
     # shut down cleanly
     curses.nocbreak(); screen.keypad(0); curses.echo()
