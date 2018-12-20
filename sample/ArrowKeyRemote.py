@@ -36,7 +36,7 @@ try:
             engine.back_a_bit()
         
         engine.stop()
-        
+
 finally:
     # shut down cleanly
     curses.nocbreak(); screen.keypad(0); curses.echo()
