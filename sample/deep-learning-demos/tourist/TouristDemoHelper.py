@@ -9,8 +9,9 @@ import time
 import cv2
 
 landmarks = {
-    0: 'up', 1: 'left', 2:'right', 3:'nyc', 4:'seattle', 5:'eiffel', 6:'bigben', 7:'china', 8:'khalifa', 9:'chicago', 
-    10:'intersection', 11:'start'
+    0: 'up', 1: 'left', 2:'right', 3:'nyc', 4:'china', 5:'eiffel', 
+    #6:'bigben', 7:'seattle', 8:'khalifa', 9:'chicago', 
+    #10:'intersection', 11:'start'
 }
     
 def load_model(which_demo):
@@ -65,16 +66,16 @@ def drive(direction):
     if direction == "up":
         engine.forward_a_bit()
     elif direction == 'left':
-        engine.left_a_bit()
+        engine.left_a_bit(get_robot_name())
     elif direction == "right":
         engine.right_a_bit()
-    else:
+    elif direction != None:
         engine.forward_a_bit()        
 
 def drive_to_landmark(landmark, model):
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
 
-    engine.set_speed(40)
+    engine.set_speed(50)
 
     try:
         while True:
@@ -87,36 +88,9 @@ def drive_to_landmark(landmark, model):
 
                 #get values from pred array
                 iArrowDir = np.argmax(pred[0])
-
-                if iArrowDir == 0:
-                    command = 'up' 
-                    engine.forward()
-                elif iArrowDir == 1:
-                    command = 'left'
-                    engine.left()
-                    time.sleep(.1)
-                    engine.forward()
-                elif iArrowDir == 2:
-                    command = 'right' 
-                    engine.right()
-                    time.sleep(.1)
-                    
-                elif iArrowDir == 3:
-                    command = "nyc"
-                elif iArrowDir == 4:
-                    command = "seattle"
-                elif iArrowDir == 5:
-                    command = "eiffel"
-                elif iArrowDir == 6:
-                    command = "bigben"
-                elif iArrowDir == 7:
-                    command = "china"
-                elif iArrowDir == 8:
-                    command = "khalifa"
-                elif iArrowDir == 9:
-                    command = "chicago"
-                    
+                command = landmarks.get(iArrowDir)
                 
+                drive_and_continue(command)
                     
                 if(command == landmark):
                     print("found " + landmark + "!")
