@@ -53,6 +53,24 @@ def get_readable_predictions(predictions):
         stringy = stringy + landmarks.get(index) + " {:.2%}".format(predictions[0][index]) + "  "
     return stringy
 
+def drive_and_stop(direction):
+     drive(direction)
+     engine.stop()
+    
+def drive_and_continue(direction):
+    drive(direction)
+    engine.forward()
+    
+def drive(direction):
+    if direction == "up":
+        engine.forward_a_bit()
+    elif direction == 'left':
+        engine.left_a_bit()
+    elif direction == "right":
+        engine.right_a_bit()
+    else:
+        engine.forward_a_bit()        
+
 def drive_to_landmark(landmark, model):
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
 
@@ -82,7 +100,7 @@ def drive_to_landmark(landmark, model):
                     command = 'right' 
                     engine.right()
                     time.sleep(.1)
-                    engine.forward()
+                    
                 elif iArrowDir == 3:
                     command = "nyc"
                 elif iArrowDir == 4:
@@ -97,6 +115,8 @@ def drive_to_landmark(landmark, model):
                     command = "khalifa"
                 elif iArrowDir == 9:
                     command = "chicago"
+                    
+                
                     
                 if(command == landmark):
                     print("found " + landmark + "!")
