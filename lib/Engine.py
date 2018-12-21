@@ -20,7 +20,9 @@ def right_a_bit():
 def left_a_bit(robot_name="zumi"):
     zumi.left()
     if robot_name == "whumi":
-        time.sleep(.2)   
+        time.sleep(.2)
+    elif robot_name =="pumi":
+        time.sleep(.2)
     else:
         time.sleep(.1)
 
