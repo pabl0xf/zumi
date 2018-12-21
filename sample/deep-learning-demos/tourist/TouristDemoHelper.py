@@ -99,20 +99,21 @@ def drive_to_landmark(landmark, model):
                 drive_and_continue(command)
                     
                 #if(command == landmark):
-                if(command == "china"):
+                if(command == "china" or command == "nyc"):
                     confidence = pred[0][iArrowDir]
-                    print("china with confidence: " + confidence)
-                    if confidence> .06:
-                        
-                   #or command == "nyc"):
-                        print("found " + command + "!")
+                    print("found " + command + " with confidence: " + str(confidence))
+                    if command == "china" and confidence < .82:
+                        print("FAKE CHINA ")
+                        engine.left()
+                        time.sleep(.5)  
+                    elif command == "nyc" and confidence < .9: 
+                        print("FAKE NEW YORK ")   
+                        engine.left()
+                        time.sleep(.5) 
+                    else:
                         engine.stop()
                         time.sleep(5)
-                    else: 
-                        print("fake " + command)
-                        engine.stop()
-                        time.sleep(1)
-
+                        
 
     finally:
         engine.stop()
