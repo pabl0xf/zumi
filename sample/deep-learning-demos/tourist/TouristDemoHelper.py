@@ -13,6 +13,8 @@ landmarks = {
     #6:'bigben', 7:'seattle', 8:'khalifa', 9:'chicago', 
     #10:'intersection', 11:'start'
 }
+
+speed = 50
     
 def load_model(which_demo):
     from keras.models import model_from_json
@@ -63,6 +65,9 @@ def drive_and_continue(direction):
     engine.forward()
     
 def drive(direction):
+    print("speed is" + speed)
+    engine.set_speed(speed)
+    
     if direction == "up":
         engine.forward_a_bit()
     elif direction == 'left':
@@ -70,12 +75,13 @@ def drive(direction):
     elif direction == "right":
         engine.right_a_bit()
     elif direction != None:
-        engine.forward_a_bit()        
+        engine.forward_a_bit() 
+        
+def set_speed(new_speed):
+    speed = new_speed
 
 def drive_to_landmark(landmark, model):
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
-
-    engine.set_speed(50)
 
     try:
         while True:
@@ -90,15 +96,18 @@ def drive_to_landmark(landmark, model):
                 iArrowDir = np.argmax(pred[0])
                 command = landmarks.get(iArrowDir)
                 
+                display.clear_output(wait=True)
+                display.display(command)
+                display.display(get_readable_predictions(pred))
+                
                 drive_and_continue(command)
                     
-                if(command == landmark):
-                    print("found " + landmark + "!")
+                #if(command == landmark):
+                if(command == "china" or command == "nyc"):
+                    print("found " + command + "!")
                     engine.stop()
+                    time.sleep(5)
 
-                display.clear_output(wait=True)
-                display.display(PIL.Image.fromarray(frame))
-                display.display(command)
 
     finally:
         engine.stop()
