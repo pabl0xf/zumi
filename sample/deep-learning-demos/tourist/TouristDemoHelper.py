@@ -104,12 +104,8 @@ def drive_to_landmark(landmark, model):
                     print("found " + command + " with confidence: " + str(confidence))
                     if command == "china" and confidence < .82:
                         print("FAKE CHINA ")
-                        engine.left()
-                        time.sleep(.5)  
                     elif command == "nyc" and confidence < .9: 
                         print("FAKE NEW YORK ")   
-                        engine.left()
-                        time.sleep(.5) 
                     else:
                         engine.stop()
                         time.sleep(5)
