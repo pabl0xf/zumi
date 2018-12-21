@@ -20,12 +20,12 @@ def load_model(which_demo):
     from keras.models import model_from_json
     import json
     
-    with open(which_demo + '_model.json') as f:
+    with open("/home/pi/zumi/sample/deep-learning-demos/tourist/" + which_demo + '_model.json') as f:
         json_string = json.load(f)
     model = model_from_json(json_string)
 
     from keras.models import load_model
-    model.load_weights(which_demo + '_weights.h5')
+    model.load_weights("/home/pi/zumi/sample/deep-learning-demos/tourist/" + which_demo + '_weights.h5')
 
     print("model is loaded 🥂")
     return model
@@ -65,7 +65,6 @@ def drive_and_continue(direction):
     engine.forward()
     
 def drive(direction):
-    print("speed is" + speed)
     engine.set_speed(speed)
     
     if direction == "up":
@@ -77,9 +76,6 @@ def drive(direction):
     elif direction != None:
         engine.forward_a_bit() 
         
-def set_speed(new_speed):
-    speed = new_speed
-
 def drive_to_landmark(landmark, model):
     camera = PiCamera(image_w=64, image_h=64, image_d=3, framerate=10)
 
@@ -103,10 +99,19 @@ def drive_to_landmark(landmark, model):
                 drive_and_continue(command)
                     
                 #if(command == landmark):
-                if(command == "china" or command == "nyc"):
-                    print("found " + command + "!")
-                    engine.stop()
-                    time.sleep(5)
+                if(command == "china"):
+                    confidence = pred[0][iArrowDir]
+                    print("china with confidence: " + confidence)
+                    if confidence> .06:
+                        
+                   #or command == "nyc"):
+                        print("found " + command + "!")
+                        engine.stop()
+                        time.sleep(5)
+                    else: 
+                        print("fake " + command)
+                        engine.stop()
+                        time.sleep(1)
 
 
     finally:
