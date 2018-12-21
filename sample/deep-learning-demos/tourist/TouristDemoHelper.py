@@ -20,12 +20,12 @@ def load_model(which_demo):
     from keras.models import model_from_json
     import json
     
-    with open(which_demo + '_model.json') as f:
+    with open("/home/pi/zumi/sample/deep-learning-demos/tourist/" + which_demo + '_model.json') as f:
         json_string = json.load(f)
     model = model_from_json(json_string)
 
     from keras.models import load_model
-    model.load_weights(which_demo + '_weights.h5')
+    model.load_weights("/home/pi/zumi/sample/deep-learning-demos/tourist/" + which_demo + '_weights.h5')
 
     print("model is loaded 🥂")
     return model
