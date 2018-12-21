@@ -29,7 +29,7 @@ def forward_a_bit():
     time.sleep(.6)
     
 def back_a_bit():
-    zumi.forward()
+    zumi.backward()
     time.sleep(.1)
 
 def set_speed(s):
