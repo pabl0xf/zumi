@@ -1,57 +1,44 @@
 #Import this file to use all of the functions necessary to move Linky
 import time
 import sys
-sys.path.insert(0,'/home/pi/zumi/src')
-import Linky_SerialCom as ropi
+sys.path.insert(0,'/home/pi/zumi/src/ZumiV3/')
+import ZumiV3 as zumi
 
-speed = 30
-
-#[TODO: add parameters in each method to specify how long]
-
-time.sleep(2)
-
-def go_forward():
-    ropi.setMotor(speed, speed)
-    print("forward")
+def forward():
+    zumi.forward()
 
 def stop():
-    ropi.setMotor(0, 0)
-    print("stop")
+    zumi.stop()
 
-def go_backward():
-    ropi.setMotor(-speed, -speed)
-    print("backward")
-    
-def turn_left():
-    ropi.setMotor(-speed, speed)
-    print("left")
+def reverse():
+    zumi.backward()
 
-def turn_right():
-    ropi.setMotor(speed, -speed)
-    print("right")
-    
 def right_a_bit():
-    ropi.setMotor(10, -5)
+    zumi.right()
     time.sleep(.1)
-    ropi.stop()
-    
-def left_a_bit():
-    ropi.setMotor(-5, 10)
-    time.sleep(.1)
-    ropi.stop()
-    
+
+def left_a_bit(robot_name="zumi"):
+    zumi.left()
+    if robot_name == "whumi":
+        time.sleep(.2)
+    elif robot_name =="pumi":
+        time.sleep(.2)
+    else:
+        time.sleep(.1)
+
 def forward_a_bit():
-    ropi.setMotor(20, 20)
-    time.sleep(.3)
-    ropi.stop()
+    zumi.forward()
+    time.sleep(.6)
+    
+def back_a_bit():
+    zumi.backward()
+    time.sleep(.1)
 
 def set_speed(s):
-    global speed
-    speed = s
-    print("speed = "+str(speed))
+    zumi.setSpeed(s)
 
-def start_line_follower():
-    ropi.lineTracer()
+def left():
+    zumi.left()
 
-def sound_play():
-    ropi.soundPlayer()
+def right():
+    zumi.right()
