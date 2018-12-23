@@ -45,12 +45,12 @@ excited_right_images = {"excited_right1", "excited_right2"}
 import time
 def animate(images):
     for frame in images:
-        image = Image.open("/home/pi/zumi/lib/eyes/" + frame + ".ppm").convert('1')
+        image = Image.open("/home/pi/zumi/src/eyes/images/" + frame + ".ppm").convert('1')
         disp.image(image)
         disp.display()
 
 def show(frame):
-    image = Image.open("/home/pi/zumi/lib/eyes/" + frame + ".ppm").convert('1')
+    image = Image.open("/home/pi/zumi/src/eyes/images/" + frame + ".ppm").convert('1')
     disp.image(image)
     disp.display()
     
