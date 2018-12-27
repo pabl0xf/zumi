@@ -34,6 +34,9 @@ def stop():
     except IOError:
         return stop()
 
+def engage_motors(left, right):
+    setMotor(left, right)
+    
 def setMotor(i, j):
     """Sets the individual speed of each motor.
     Args: 2 integers, from -100 to 100, for the left and right motors, respectively.
