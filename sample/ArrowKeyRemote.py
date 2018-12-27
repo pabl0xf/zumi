@@ -16,6 +16,8 @@ curses.cbreak()
 screen.keypad(True)
 
 engine.set_speed(30)
+engine.set_left_faster_by(15)
+engine.set_right_faster_by(0)
 
 try:
     while True:
@@ -29,7 +31,7 @@ try:
             screen.addstr(0, 0, 'left ') 
             engine.left_a_bit()
         elif char == curses.KEY_UP:
-            screen.addstr(0, 0, 'forward   ') 
+            screen.addstr(0, 0, 'forward ') 
             engine.forward_a_bit()
         elif char == curses.KEY_DOWN:
             screen.addstr(0, 0, 'reverse ')
