@@ -53,6 +53,7 @@ def back_a_bit():
 def set_speed(s):
     global speed
     speed = s
+    zumi.setSpeed(s)
 
 def left():
     zumi.left()
