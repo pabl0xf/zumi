@@ -96,3 +96,16 @@ def headlightsOn():
         bus.write_byte(address, 85)
     except IOError:
         return headlightsOn()
+
+#Debug functions. Remove before final release
+def enableAcceleration():
+    try:
+        bus.write_byte(address, 86)
+    except IOError:
+        return enableAcceleration()
+
+def disableAcceleration():
+    try:
+        bus.write_byte(address, 87)
+    except IOError:
+        return disableAcceleration()
