@@ -1,8 +1,12 @@
 import sys
 sys.path.insert(0,'/home/pi/zumi/lib')
 import Engine as engine
+import Eyes as eyes
 import curses
+import time
 
+
+eyes.hello()
 # get the curses screen window
 screen = curses.initscr()
 
@@ -15,10 +19,7 @@ curses.cbreak()
 # map arrow keys to special values
 screen.keypad(True)
 
-drive_continuously = False
-engine.set_speed(80)
-engine.set_left_faster_by(28)
-engine.set_right_faster_by(0)
+engine.set_speed(45)
 
 try:
     while True:
@@ -27,21 +28,28 @@ try:
             break
         elif char == curses.KEY_RIGHT:
             screen.addstr(0, 0, 'right')
-            engine.right_a_bit()
+#             engine.right_a_bit()
+            engine.right()
+#             time.sleep(.05)
+#             engine.forward()
         elif char == curses.KEY_LEFT:
             screen.addstr(0, 0, 'left ') 
-            engine.left_a_bit()
+#             engine.left_a_bit()
+            engine.left()
+            time.sleep(.05)
+            engine.forward()
         elif char == curses.KEY_UP:
-            screen.addstr(0, 0, 'forward ') 
-            engine.forward_a_bit()
+            screen.addstr(0, 0, 'forward   ') 
+            engine.forward()
         elif char == curses.KEY_DOWN:
             screen.addstr(0, 0, 'reverse ')
-            engine.back_a_bit()
-        
-        if drive_continuously:
-            engine.forward()
-        else:
             engine.stop()
+            eyes.excited()
+        elif char == curses.KEY_BACKSPACE:
+            screen.addstr(0, 0, 'stop ')
+            engine.stop
+            
+
 
 finally:
     # shut down cleanly
