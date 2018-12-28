@@ -81,12 +81,6 @@ def blink():
     show("blink3")
     show("blink2")
     show("blink1")
-    
-def sad():
-    show("neutral")
-    show("sad_1")
-    show("sad_2")
-    show("sad_3")
 
 def blink2():
     show("blinking_1")
@@ -99,6 +93,11 @@ def glimmer():
     show("big_eyes1")
     show("big_eyes2")
     show("big_eyes3")
-    
+
+def sad():    
+    show("neutral")
+    show("sad1")
+    show("sad2")
+    show("sad3")
 
     
