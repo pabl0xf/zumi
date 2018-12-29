@@ -15,7 +15,10 @@ curses.cbreak()
 # map arrow keys to special values
 screen.keypad(True)
 
-engine.set_speed(30)
+drive_continuously = False
+engine.set_speed(80)
+engine.set_left_faster_by(28)
+engine.set_right_faster_by(0)
 
 try:
     while True:
@@ -29,13 +32,16 @@ try:
             screen.addstr(0, 0, 'left ') 
             engine.left_a_bit()
         elif char == curses.KEY_UP:
-            screen.addstr(0, 0, 'forward   ') 
+            screen.addstr(0, 0, 'forward ') 
             engine.forward_a_bit()
         elif char == curses.KEY_DOWN:
             screen.addstr(0, 0, 'reverse ')
             engine.back_a_bit()
         
-        engine.stop()
+        if drive_continuously:
+            engine.forward()
+        else:
+            engine.stop()
 
 finally:
     # shut down cleanly

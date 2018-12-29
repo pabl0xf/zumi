@@ -34,6 +34,9 @@ def stop():
     except IOError:
         return stop()
 
+def engage_motors(left, right):
+    setMotor(left, right)
+    
 def setMotor(i, j):
     """Sets the individual speed of each motor.
     Args: 2 integers, from -100 to 100, for the left and right motors, respectively.
@@ -93,3 +96,16 @@ def headlightsOn():
         bus.write_byte(address, 85)
     except IOError:
         return headlightsOn()
+
+#Debug functions. Remove before final release
+def enableAcceleration():
+    try:
+        bus.write_byte(address, 86)
+    except IOError:
+        return enableAcceleration()
+
+def disableAcceleration():
+    try:
+        bus.write_byte(address, 87)
+    except IOError:
+        return disableAcceleration()

@@ -16,7 +16,7 @@ local_folder_path = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/"
 verbose_mode = False
     
 def upload_images_to_cloud():
-    print("Uploading to Cloud..")
+    print("Uploading images to Cloud...")    
     for file_name in os.listdir(local_folder_path):
         if is_valid_image(file_name):
             file_metadata = {'name': file_name,
@@ -28,10 +28,8 @@ def upload_images_to_cloud():
             created = drive_service.files().create(body=file_metadata,
                                     media_body=media,
                                     fields='id').execute()
-            print ("  Uploaded " + file_name)
-    delete = input("Delete training images from Zumi?") 
-    if delete == 'y':
-        clear_images_from_zumi()
+            print (str(len(os.listdir(local_folder_path))) + " files left.")
+            os.remove(local_folder_path + file_name)
             
 def is_valid_image(file_name):
     return file_name.endswith(".jpg") and os.path.getsize(local_folder_path + file_name) > 0 #the image is not empty

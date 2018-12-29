@@ -51,21 +51,28 @@ time.sleep(0.1)
 
 null = input("Press enter to begin!")
 
-try:
-	for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-		x = frame.array
-		maximum = x.max()
-		scaledValue = 1.0
-		if maximum > 0:
-			scaledValue = 255.0/maximum
-		y = scaledValue * x
-		y = np.expand_dims(y, axis=0)
-		pred = model.predict(y)
-		print(pred)
-		rawCapture.truncate(0)
-		camera.close()
-		#Decide whether 'nyc' or 'china' based on pred
-		tourist_demo.drive_to_landmark("china", drive_model, camera)
+for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+	x = frame.array
+	maximum = x.max()
+	scaledValue = 1.0
+	if maximum > 0:
+		scaledValue = 255.0/maximum
+	y = scaledValue * x
+	y = np.expand_dims(y, axis=0)
+	pred = model.predict(y)
+	preds = model.predict_classes(y)
 
-except KeyboardInterrupt:
-		print("\nExiting...")
+	rawCapture.truncate(0)
+
+	#Decide whether 'nyc' or 'china' based on pred
+
+	if int(preds) == 0:
+		#print("China")
+		camera.close()
+		tourist_demo.drive_to_landmark("china", drive_model, camera)
+		break
+	else:
+		#print("NYC")
+		camera.close()
+		tourist_demo.drive_to_landmark("nyc", drive_model, camera)
+		break
