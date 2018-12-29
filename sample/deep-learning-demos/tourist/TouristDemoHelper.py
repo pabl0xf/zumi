@@ -14,7 +14,7 @@ landmarks = {
     #10:'intersection', 11:'start'
 }
 
-speed = 50
+speed = 40
     
 def load_model(which_demo):
     from keras.models import model_from_json
@@ -98,17 +98,20 @@ def drive_to_landmark(landmark, model):
                 
                 drive_and_continue(command)
                     
-                #if(command == landmark):
-                if(command == "china" or command == "nyc"):
-                    confidence = pred[0][iArrowDir]
-                    print("found " + command + " with confidence: " + str(confidence))
-                    if command == "china" and confidence < .82:
-                        print("FAKE CHINA ")
-                    elif command == "nyc" and confidence < .9: 
-                        print("FAKE NEW YORK ")   
-                    else:
-                        engine.stop()
-                        time.sleep(5)
+                if(command == landmark):
+                    engine.stop()
+                    time.sleep(5)
+#                     confidence = pred[0][iArrowDir]
+# #                         print("found " + command + " with confidence: " + str(confidence))
+#                     if command == "china" and confidence < .82:
+#                         x=1
+# #                             print("FAKE CHINA ")
+#                     elif command == "nyc" and confidence < .9: 
+# #                             print("FAKE NEW YORK ")  ?
+#                         x=1
+#                     else:
+#                         engine.stop()
+#                         time.sleep(5)
                         
 
     finally:
