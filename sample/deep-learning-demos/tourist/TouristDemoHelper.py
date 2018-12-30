@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(0,'/home/pi/zumi/lib')
 import Engine as engine
+import Eyes as eyes
 from IPython import display 
 import numpy as np
 import PIL.Image 
@@ -17,6 +18,7 @@ landmarks = {
 speed = 40
     
 def load_model(which_demo):
+    eyes.hello()
     from keras.models import model_from_json
     import json
     
@@ -117,3 +119,14 @@ def drive_to_landmark(landmark, model):
     finally:
         engine.stop()
         camera.shutdown()
+        
+        
+def calibrate_motors():
+    robots = {"whumi": {"left":0, "right":28},
+          "newmi": {"left":0, "right":20},
+          "pumi": {"left":0, "right":20},
+          "kickmi": {"left":0, "right":20},
+    }
+    engine.set_speed(50)
+    engine.set_left_faster_by(robots.get(get_robot_name()).get("left"))
+    engine.set_right_faster_by(robots.get(get_robot_name()).get("right"))
