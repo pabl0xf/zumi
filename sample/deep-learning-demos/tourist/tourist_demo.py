@@ -34,45 +34,49 @@ model.add(Dense(128))
 model.add(Activation('relu'))
 model.add(Dense(2))
 model.add(Activation('sigmoid'))
-model.load_weights('drawing_weights.hdf5')
+model.load_weights('/home/pi/zumi/sample/deep-learning-demos/tourist/drawing_weights.hdf5')
 
 model.compile(loss='categorical_crossentropy',
 	optimizer='adam',
 	metrics=['accuracy'])
 
-camera = PiCamera()
-camera.resolution = (WIDTH, HEIGHT)
-camera.hflip = True
-camera.vflip = True
-camera.framerate = 32
-rawCapture = PiRGBArray(camera, size=(WIDTH, HEIGHT))
+while True :
+    try :
+        camera = PiCamera()
+        camera.resolution = (WIDTH, HEIGHT)
+        camera.hflip = True
+        camera.vflip = True
+        camera.framerate = 32
+        rawCapture = PiRGBArray(camera, size=(WIDTH, HEIGHT))
 
-time.sleep(0.1)
+        time.sleep(0.1)
 
-null = input("Press enter to begin!")
+        null = input("Press enter to begin!")
 
-for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-	x = frame.array
-	maximum = x.max()
-	scaledValue = 1.0
-	if maximum > 0:
-		scaledValue = 255.0/maximum
-	y = scaledValue * x
-	y = np.expand_dims(y, axis=0)
-	pred = model.predict(y)
-	preds = model.predict_classes(y)
+        for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+            x = frame.array
+            maximum = x.max()
+            scaledValue = 1.0
+            if maximum > 0:
+                scaledValue = 255.0/maximum
+            y = scaledValue * x
+            y = np.expand_dims(y, axis=0)
+            pred = model.predict(y)
+            preds = model.predict_classes(y)
 
-	rawCapture.truncate(0)
+            rawCapture.truncate(0)
 
-	#Decide whether 'nyc' or 'china' based on pred
+            #Decide whether 'nyc' or 'china' based on pred
 
-	if int(preds) == 0:
-		#print("China")
-		camera.close()
-		tourist_demo.drive_to_landmark("china", drive_model, camera)
-		break
-	else:
-		#print("NYC")
-		camera.close()
-		tourist_demo.drive_to_landmark("nyc", drive_model, camera)
-		break
+            if int(preds) == 0:
+                print("China")
+                camera.close()
+                tourist_demo.drive_to_landmark("china", drive_model)
+                break
+            else:
+                print("NYC")
+                camera.close()
+                tourist_demo.drive_to_landmark("nyc", drive_model)
+                break
+    except:
+        print("hi")
