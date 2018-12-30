@@ -39,12 +39,9 @@ disp.clear()
 disp.display()
 
 EXCITED = {"excited1", "excited2", "excited3"}
-EXCITED_LEFT = {"excited_left1", "excited_left2"}
-EXCITED_RIGHT = {"excited_right1", "excited_right2"}
-LOOK_RIGHT = {"excited_right1", "excited_right2"}
-LOOK_LEFT = {"excited_right1", "excited_right2"}
-SAD = {"sad_1", "sad_2", "sad_3"}
-NEUTRAL = "neutral"
+LOOK_RIGHT = {"big_eyes1", "big_eyes1"} #don't have designs for these yet
+LOOK_LEFT = {"big_eyes1", "big_eyes1"}  #don't have designs for these yet
+NEUTRAL = "big_eyes1"
 
 import time
 def animate(images):
@@ -59,10 +56,9 @@ def show(frame):
     disp.display()
     
 def close_eyes():    
-    show("blink1")
-    show("blink2")
-    show("blink3")
-    show("blink4")
+    show("big_eyes1")
+    time.sleep(.5)
+    show("sleep")
     
 def wake_up():
     show("blink4")
@@ -73,14 +69,12 @@ def wake_up():
     time.sleep(5)
     
 def blink():
-    show("blink1")
-    show("blink2")
-    show("blink3")
-    show("blink4")
-    show("blink4")
-    show("blink3")
-    show("blink2")
-    show("blink1")
+    show("big_eyes1")
+    time.sleep(.25)
+    show("sleep")
+    time.sleep(.25)
+    show("opening_1")
+    show("big_eyes1")
 
 def blink2():
     show("blinking_1")
@@ -95,9 +89,18 @@ def glimmer():
     show("big_eyes3")
 
 def sad():    
-    show("neutral")
     show("sad1")
     show("sad2")
     show("sad3")
 
-    
+def happy():
+    show("big_eyes1")
+    show("happy_1")
+    show("happy_left2")
+    show("happy_right1")
+    show("happy_left2")
+    show("happy_right1")
+    show("happy_left2")
+    show("happy_right1")
+    show("opening_1")
+
