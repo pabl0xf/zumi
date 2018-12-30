@@ -1,4 +1,4 @@
-#Import this file to use all of the functions necessary to move Linky
+from __future__ import division
 import time
 import sys
 sys.path.insert(0,'/home/pi/zumi/src/ZumiV3/')
@@ -7,6 +7,7 @@ import ZumiV3 as zumi
 speed = 50
 right_faster_by = 0
 left_faster_by = 0
+zumi.enableAcceleration()
 
 def set_right_faster_by(percentage_increase):
     global right_faster_by
@@ -21,7 +22,7 @@ def forward():
     right_speed = speed
     right_speed = speed + speed/100*right_faster_by
     left_speed = speed + speed/100*left_faster_by
-    zumi.engage_motors(left_speed, right_speed)
+    zumi.engage_motors(right_speed, left_speed)
 
 def stop():
     zumi.stop()
