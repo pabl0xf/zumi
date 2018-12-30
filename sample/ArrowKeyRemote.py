@@ -16,7 +16,7 @@ curses.cbreak()
 screen.keypad(True)
 
 drive_continuously = False
-engine.set_speed(80)
+engine.set_speed(60)
 engine.set_left_faster_by(28)
 engine.set_right_faster_by(0)
 
@@ -37,6 +37,10 @@ try:
         elif char == curses.KEY_DOWN:
             screen.addstr(0, 0, 'reverse ')
             engine.back_a_bit()
+        elif char == curses.KEY_BACKSPACE:
+            screen.addstr(0, 0, 'stop ')
+            engine.stop()
+            exit()
         
         if drive_continuously:
             engine.forward()
