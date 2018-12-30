@@ -28,15 +28,19 @@ from PIL import Image
 # Raspberry Pi pin configuration:
 RST = 24
 
-# 128x64 display with hardware I2C:
-disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
+try: 
+    # 128x64 display with hardware I2C:
+    disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
 
-# Initialize library.
-disp.begin()
+    # Initialize library.
+    disp.begin()
 
-# Clear display.
-disp.clear()
-disp.display()
+    # Clear display.
+    disp.clear()
+    disp.display()
+
+except:
+    print("OLED screen is not connected!")
 
 EXCITED = {"excited1", "excited2", "excited3"}
 LOOK_RIGHT = {"big_eyes1", "big_eyes1"} #don't have designs for these yet
