@@ -24,7 +24,10 @@ def sad():
     eyes.sad()
     
 def hello():
-    eyes.show(eyes.NEUTRAL)
+    try:
+        eyes.show(eyes.NEUTRAL)
+    except:
+        print("OLED screen is not connected!")
     
 def glimmer():
     eyes.glimmer()
