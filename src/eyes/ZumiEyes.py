@@ -28,6 +28,13 @@ from PIL import Image
 # Raspberry Pi pin configuration:
 RST = 24
 
+EXCITED = {"excited1", "excited2", "excited3"}
+LOOK_RIGHT = {"big_eyes1", "big_eyes1"} #don't have designs for these yet
+LOOK_LEFT = {"big_eyes1", "big_eyes1"}  #don't have designs for these yet
+NEUTRAL = "big_eyes1"
+
+import time
+
 try: 
     # 128x64 display with hardware I2C:
     disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
@@ -35,19 +42,9 @@ try:
     # Initialize library.
     disp.begin()
 
-    # Clear display.
-    disp.clear()
-    disp.display()
-
 except:
     print("OLED screen is not connected!")
-
-EXCITED = {"excited1", "excited2", "excited3"}
-LOOK_RIGHT = {"big_eyes1", "big_eyes1"} #don't have designs for these yet
-LOOK_LEFT = {"big_eyes1", "big_eyes1"}  #don't have designs for these yet
-NEUTRAL = "big_eyes1"
-
-import time
+    
 def animate(images):
     for frame in images:
         image = Image.open("/home/pi/zumi/src/eyes/images/" + frame + ".ppm").convert('1')
