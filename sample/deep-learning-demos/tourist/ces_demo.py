@@ -1,7 +1,7 @@
 import classification_helper as drawing_helper
 import TouristDemoHelper as driving_helper
 
-driving_model = driving_helper.load_model("landmark")
+driving_model = driving_helper.load_model("driving")
 print("~driving model loaded~")
 drawing_model = drawing_helper.generate_calssification_model()
 print("~drawing model loaded~")
