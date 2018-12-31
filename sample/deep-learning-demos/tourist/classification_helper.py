@@ -22,7 +22,7 @@ if K.image_data_format() == 'channels_first':
 else:
     input_shape = (WIDTH, HEIGHT, 3)
 
-weight_file = 'weights-whoseop_gray_newchicago.hdf5'
+weight_file = '/home/pi/zumi/ces-demo/weights-whoseop_gray_newchicago.hdf5'
 
 
 def generate_calssification_model():
