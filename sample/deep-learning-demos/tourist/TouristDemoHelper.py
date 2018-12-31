@@ -11,12 +11,11 @@ import cv2
 
 landmarks = {
     0: 'up', 1: 'left', 2:'right', 3:'nyc', 4:'china', 5:'eiffel', 
-    #6:'bigben', 7:'seattle', 8:'khalifa', 9:'chicago', 
+    6:'bigben', 7:'seattle'
+    #, 8:'khalifa', 9:'chicago', 
     #10:'intersection', 11:'start'
 }
 
-speed = 40
-    
 def load_model(which_demo):
     eyes.hello()
     from keras.models import model_from_json
@@ -67,12 +66,10 @@ def drive_and_continue(direction):
     engine.forward()
     
 def drive(direction):
-    engine.set_speed(speed)
-    
     if direction == "up":
         engine.forward_a_bit()
     elif direction == 'left':
-        engine.left_a_bit(get_robot_name())
+        engine.left_a_bit()
     elif direction == "right":
         engine.right_a_bit()
     elif direction != None:
@@ -94,9 +91,9 @@ def drive_to_landmark(landmark, model):
                 iArrowDir = np.argmax(pred[0])
                 command = landmarks.get(iArrowDir)
                 
-                display.clear_output(wait=True)
-                display.display(command)
-                display.display(get_readable_predictions(pred))
+#                 display.clear_output(wait=True)
+#                 display.display(command)
+#                 display.display(get_readable_predictions(pred))
                 
                 drive_and_continue(command)
                     
@@ -120,13 +117,5 @@ def drive_to_landmark(landmark, model):
         engine.stop()
         camera.shutdown()
         
-        
 def calibrate_motors():
-    robots = {"whumi": {"left":0, "right":28},
-          "newmi": {"left":0, "right":20},
-          "pumi": {"left":0, "right":20},
-          "kickmi": {"left":0, "right":20},
-    }
-    engine.set_speed(50)
-    engine.set_left_faster_by(robots.get(get_robot_name()).get("left"))
-    engine.set_right_faster_by(robots.get(get_robot_name()).get("right"))
+    engine.calibrate_motors_for_tourist_demo()
