@@ -22,7 +22,7 @@ else:
 
 weight_file = '/home/pi/zumi/ces-demo/weights-whoseop_gray_newchicago.hdf5'
 
-def generate_calssification_model():
+def generate_calssification_model(file = weight_file):
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(3, 3),
                      activation='relu',
@@ -37,18 +37,18 @@ def generate_calssification_model():
     model.add(Dropout(0.2))
     model.add(Dense(5, activation='softmax'))
 
-    model.load_weights(weight_file)
+    model.load_weights(file)
     # compile
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
 
 
-def predict(model):
+def predict(model, w=WIDTH, h=HEIGHT):
     # set up camera
     camera = PiCamera()
-    camera.resolution = (WIDTH, HEIGHT)
+    camera.resolution = (w, h)
     camera.framerate = 32
-    raw_capture = PiRGBArray(camera, size=(WIDTH, HEIGHT))
+    raw_capture = PiRGBArray(camera, size=(w, h))
     # let camera warm up
     time.sleep(0.1)
     cnt = 0
