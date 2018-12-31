@@ -99,5 +99,5 @@ def run():
     land = predict(classification_model, WIDTH, HEIGHT)
     print(land + " :  finish")
 
-if __name__ == '__main()__'
+if __name__ == "__main__":
     run()
