@@ -1,5 +1,3 @@
-
-# import modules
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import numpy as np
@@ -23,7 +21,6 @@ else:
     input_shape = (WIDTH, HEIGHT, 3)
 
 weight_file = '/home/pi/zumi/ces-demo/weights-whoseop_gray_newchicago.hdf5'
-
 
 def generate_calssification_model():
     model = Sequential()
@@ -70,7 +67,7 @@ def predict(model):
 
             pred = model.predict(x)
             preds = model.predict_classes(x)
-            print(pred, preds)
+            #print(pred, preds)
             #eye.draw_text(landmark[preds[0]])
             #eye.draw_image(Image.fromarray(gray).convert('1'))
             
@@ -79,6 +76,7 @@ def predict(model):
             if cnt_label == preds[0]:
                 cnt += 1
                 if cnt > 5:
+                    camera.close()
                     return landmark[preds[0]]
             else:
                 cnt = 0
