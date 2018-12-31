@@ -25,7 +25,7 @@ else:
 weight_file = 'weights-whoseop_gray_newchicago.hdf5'
 
 
-def generate_calssification_model(file):
+def generate_calssification_model():
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(3, 3),
                      activation='relu',
@@ -40,18 +40,18 @@ def generate_calssification_model(file):
     model.add(Dropout(0.2))
     model.add(Dense(5, activation='softmax'))
 
-    model.load_weights(file)
+    model.load_weights(weight_file)
     # compile
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
 
 
-def predict(model, w, h):
+def predict(model):
     # set up camera
     camera = PiCamera()
-    camera.resolution = (w, h)
+    camera.resolution = (WIDTH, HEIGHT)
     camera.framerate = 32
-    raw_capture = PiRGBArray(camera, size=(w, h))
+    raw_capture = PiRGBArray(camera, size=(WIDTH, HEIGHT))
     # let camera warm up
     time.sleep(0.1)
     cnt = 0
@@ -94,9 +94,9 @@ def predict(model, w, h):
 
 def run():
     print("init run method")
-    classification_model = generate_calssification_model(weight_file)
+    classification_model = generate_calssification_model()
     print("generate model")
-    land = predict(classification_model, WIDTH, HEIGHT)
+    land = predict(classification_model)
     print(land + " :  finish")
 
 if __name__ == "__main__":
