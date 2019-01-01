@@ -19,6 +19,8 @@ command = ""
 which_robot = tourist_demo.get_robot_name()
 print("ready to train with " + which_robot + "!")
 
+tourist_demo.calibrate_motors()
+
 try:
     while True:        
         

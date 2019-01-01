@@ -11,7 +11,8 @@ if not creds or creds.invalid:
     creds = tools.run_flow(flow, store)
 drive_service = build('drive', 'v3', http=creds.authorize(Http()))
 
-cloud_folder_id = "1yEIO5GpA94a2mlQGgkGCrKjcr2v7-v0a"
+# cloud_folder_id = "1yEIO5GpA94a2mlQGgkGCrKjcr2v7-v0a"
+cloud_folder_id = "184k1Vr6_lxmjWrjdyeh1txhWuBt7Vpvl"
 local_folder_path = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/"
 verbose_mode = False
     
