@@ -72,7 +72,7 @@ def right():
 def calibrate_motors_for_tourist_demo():
     robots = {"whumi": {"left":0, "right":28},
           "newmi": {"left":0, "right":20},
-          "pumi": {"left":-22, "right":-15},
+          "pumi": {"left":15, "right":25},
           "kickmi": {"left":0, "right":20},
          }
     set_speed(70)
