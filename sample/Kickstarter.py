@@ -6,7 +6,7 @@ import curses
 import time
 
 
-eyes.hello()
+
 # get the curses screen window
 screen = curses.initscr()
 
@@ -20,9 +20,11 @@ curses.cbreak()
 screen.keypad(True)
 
 engine.set_speed(45)
+engine.calibrate_motors_for_tourist_demo()
 
 try:
     while True:
+        eyes.hello()
         char = screen.getch()
         if char == ord('q'): 
             break
@@ -36,15 +38,15 @@ try:
             screen.addstr(0, 0, 'left ') 
 #             engine.left_a_bit()
             engine.left()
-            time.sleep(.05)
-            engine.forward()
+#             time.sleep(.05)
+#             engine.forward()
         elif char == curses.KEY_UP:
             screen.addstr(0, 0, 'forward   ') 
             engine.forward()
         elif char == curses.KEY_DOWN:
             screen.addstr(0, 0, 'reverse ')
             engine.stop()
-            eyes.excited()
+            eyes.blink()
         elif char == curses.KEY_BACKSPACE:
             screen.addstr(0, 0, 'stop ')
             engine.stop
