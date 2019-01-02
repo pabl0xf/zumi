@@ -1,57 +1,85 @@
-#Import this file to use all of the functions necessary to move Linky
+from __future__ import division
 import time
 import sys
-sys.path.insert(0,'/home/pi/zumi/src')
-import Linky_SerialCom as ropi
+sys.path.insert(0,'/home/pi/zumi/src/ZumiV3/')
+import ZumiV3 as zumi
 
-speed = 30
+speed = 50
+right_faster_by = 0
+left_faster_by = 0
+zumi.disableAcceleration()
 
-#[TODO: add parameters in each method to specify how long]
+def set_right_faster_by(percentage_increase):
+    global right_faster_by
+    right_faster_by = percentage_increase
 
-time.sleep(2)
+def set_left_faster_by(percentage_increase):
+    global left_faster_by 
+    left_faster_by = percentage_increase
 
-def go_forward():
-    ropi.setMotor(speed, speed)
-    print("forward")
+def forward():
+    left_speed = speed
+    right_speed = speed
+    right_speed = speed + speed/100*right_faster_by
+    left_speed = speed + speed/100*left_faster_by
+    zumi.engage_motors(right_speed, left_speed)
 
 def stop():
-    ropi.setMotor(0, 0)
-    print("stop")
+    zumi.stop()
 
-def go_backward():
-    ropi.setMotor(-speed, -speed)
-    print("backward")
-    
-def turn_left():
-    ropi.setMotor(-speed, speed)
-    print("left")
+def reverse():
+    zumi.backward()
 
-def turn_right():
-    ropi.setMotor(speed, -speed)
-    print("right")
-    
-def right_a_bit():
-    ropi.setMotor(10, -5)
+def right_a_bit_OLD():
+    zumi.right()
     time.sleep(.1)
-    ropi.stop()
     
+def right_a_bit():   
+    left_speed = speed
+    right_speed = speed
+    right_speed = speed + speed/100*right_faster_by
+    left_speed = speed + speed/100*left_faster_by
+    zumi.engage_motors(right_speed, -left_speed)
+    time.sleep(.1)
+
 def left_a_bit():
-    ropi.setMotor(-5, 10)
+    left_speed = speed
+    right_speed = speed
+    right_speed = speed + speed/100*right_faster_by
+    left_speed = speed + speed/100*left_faster_by
+    zumi.engage_motors(-right_speed, left_speed)
     time.sleep(.1)
-    ropi.stop()
-    
+        
 def forward_a_bit():
-    ropi.setMotor(20, 20)
-    time.sleep(.3)
-    ropi.stop()
+    forward()
+    time.sleep(.6)
+    
+def back_a_bit():
+    zumi.backward()
+    time.sleep(.1)
 
 def set_speed(s):
     global speed
     speed = s
-    print("speed = "+str(speed))
+    zumi.setSpeed(s)
 
-def start_line_follower():
-    ropi.lineTracer()
+def left():
+    zumi.left()
 
-def sound_play():
-    ropi.soundPlayer()
+def right():
+    zumi.right()
+    
+def calibrate_motors_for_tourist_demo():
+    robots = {"whumi": {"left":0, "right":28},
+          "newmi": {"left":0, "right":20},
+          "pumi": {"left":-22, "right":-15},
+          "kickmi": {"left":0, "right":20},
+         }
+    set_speed(70)
+    set_left_faster_by(robots.get(get_robot_name()).get("left"))
+    set_right_faster_by(robots.get(get_robot_name()).get("right"))
+    
+def get_robot_name():
+    import socket
+    hostname = socket.gethostname() 
+    return hostname

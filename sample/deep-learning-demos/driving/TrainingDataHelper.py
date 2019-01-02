@@ -7,18 +7,19 @@ import os
 store = file.Storage('hi.jpg')
 creds = store.get()
 if not creds or creds.invalid:
-    flow = client.flow_from_clientsecrets('credentials.json', "https://www.googleapis.com/auth/drive")
+    flow = client.flow_from_clientsecrets('/home/pi/zumi/sample/deep-learning-demos/driving/credentials.json', "https://www.googleapis.com/auth/drive")
     creds = tools.run_flow(flow, store)
 drive_service = build('drive', 'v3', http=creds.authorize(Http()))
 
-cloud_folder_id = "1NwZ7PWLM4ZlHcvZhEWAM2N7YJDPhM9Pt"
-local_folder_path = "/home/pi/zumi/sample/deep-learning-demos/driving/images/"
+# cloud_folder_id = "1yEIO5GpA94a2mlQGgkGCrKjcr2v7-v0a"
+cloud_folder_id = "184k1Vr6_lxmjWrjdyeh1txhWuBt7Vpvl"
+local_folder_path = "/home/pi/zumi/sample/deep-learning-demos/tourist/images/"
 verbose_mode = False
     
 def upload_images_to_cloud():
-    print("Uploading to Cloud..")
+    print("Uploading images to Cloud...")    
     for file_name in os.listdir(local_folder_path):
-        if file_name.endswith(".jpg"):
+        if is_valid_image(file_name):
             file_metadata = {'name': file_name,
                             "parents": ['' + cloud_folder_id + '']}
             media = MediaFileUpload(local_folder_path + file_name, 
@@ -28,7 +29,11 @@ def upload_images_to_cloud():
             created = drive_service.files().create(body=file_metadata,
                                     media_body=media,
                                     fields='id').execute()
-            print ("  Uploaded " + file_name)
+            print (str(len(os.listdir(local_folder_path))) + " files left.")
+            os.remove(local_folder_path + file_name)
+            
+def is_valid_image(file_name):
+    return file_name.endswith(".jpg") and os.path.getsize(local_folder_path + file_name) > 0 #the image is not empty
             
 def clear_images_from_cloud():
     files_to_delete = get_images_in_cloud()
