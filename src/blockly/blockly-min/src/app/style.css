@@ -1063,6 +1063,10 @@ div.master-toolbox
   background-image: url(images/icons/lights_icon.svg);
 }
 
+.blocklyTreeLabel.eyes {
+  background-image: url(images/icons/icon_eye.svg);
+}
+
 .blocklyTreeLabel.sound {
   background-image: url(images/icons/sound_icon.svg);
   opacity: 0.5;
@@ -1138,7 +1142,7 @@ div.master-toolbox
 .blocklyToolboxDiv[role="junior"]
   .blocklyTreeRoot
   div[role="group"]
-  div[role="treeitem"]:nth-child(7):before,
+  div[role="treeitem"]:nth-child(8):before,
 .blocklyToolboxDiv[role="senior"]
   .blocklyTreeRoot
   div[role="group"]
