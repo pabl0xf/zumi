@@ -34455,7 +34455,7 @@ var MasterWorkspace = function (_React$Component) {
       var zumiUrl = null;
       var hostName = window.location.protocol + "//" + window.location.hostname;
 
-      hostName = "http://192.168.3.155";
+      //hostName = "http://192.168.3.155";
 
       zumiUrl = hostName + ":5555/notebooks/blockly.ipynb";
 
