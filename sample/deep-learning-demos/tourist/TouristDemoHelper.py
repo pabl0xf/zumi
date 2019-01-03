@@ -37,7 +37,7 @@ def get_robot_name():
     return hostname
     
 def take_a_bunch_of_pictures(camera, label):
-    cnt = 20
+    cnt = 5
     while cnt >= 0:
         print(cnt)
         cnt = cnt - 1
