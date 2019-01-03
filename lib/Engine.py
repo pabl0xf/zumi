@@ -49,11 +49,11 @@ def left_a_bit():
     left_speed = speed + speed/100*left_faster_by
     zumi.engage_motors(-right_speed, left_speed)
     time.sleep(.1)
-        
+
 def forward_a_bit():
     forward()
     time.sleep(.6)
-    
+
 def back_a_bit():
     zumi.backward()
     time.sleep(.1)
@@ -68,18 +68,19 @@ def left():
 
 def right():
     zumi.right()
-    
+
 def calibrate_motors_for_tourist_demo():
     robots = {"whumi": {"left":0, "right":28},
           "dumi": {"left":-15, "right":5},
           "pumi": {"left":-22, "right":70},
           "kickmi": {"left":0, "right":20},
+          "mumi": {"left":-46, "right":-30}
          }
     set_speed(70)
     set_left_faster_by(robots.get(get_robot_name()).get("left"))
     set_right_faster_by(robots.get(get_robot_name()).get("right"))
-    
+
 def get_robot_name():
     import socket
-    hostname = socket.gethostname() 
+    hostname = socket.gethostname()
     return hostname
