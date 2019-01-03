@@ -91,7 +91,7 @@ void setup() {
   pinMode(BUZZER_PIN, OUTPUT);
   digitalWrite(BUZZER_PIN, LOW);
   excited(); 
-  motorTest();
+  //motorTest();
   
 }
 
@@ -300,9 +300,7 @@ int readIR(int indexOfIRSensor)
 byte setMotorState(byte selectedMotorState, byte speedM1, byte speedM2)
 {
   byte motorState = selectedMotorState;
-        //make the rear light turn on when 
-      digitalWrite(BACK_LEFT_LED, LOW);
-      digitalWrite(BACK_RIGHT_LED, LOW);
+
   switch (selectedMotorState) {
     //--------------------------------------
     case 0://Motors stop
@@ -311,9 +309,7 @@ byte setMotorState(byte selectedMotorState, byte speedM1, byte speedM2)
       analogWrite(MOTOR_LEFT_B, 0);
       analogWrite(MOTOR_RIGHT_A, 0);
       analogWrite(MOTOR_RIGHT_B, 0);
-      //make the rear light turn on when 
-      digitalWrite(BACK_LEFT_LED, HIGH);
-      digitalWrite(BACK_RIGHT_LED, HIGH);
+
       
       //      SoftPWMSet(MOTOR_LEFT_A, 0);
       //      SoftPWMSet(MOTOR_LEFT_B, 0);
@@ -345,9 +341,7 @@ byte setMotorState(byte selectedMotorState, byte speedM1, byte speedM2)
       analogWrite(MOTOR_RIGHT_A, 0);
       analogWrite(MOTOR_RIGHT_B, speedM2);
 
-      //make the rear light turn on when 
-      digitalWrite(BACK_LEFT_LED, HIGH);
-      digitalWrite(BACK_RIGHT_LED, HIGH);
+
       
       //      SoftPWMSet(MOTOR_LEFT_A, 0);
       //      SoftPWMSet(MOTOR_LEFT_B, speedM1);
