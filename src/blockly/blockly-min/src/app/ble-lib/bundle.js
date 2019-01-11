@@ -5752,7 +5752,7 @@ global.DISPLAY_INTERVAL = false;
 global.KEY_PRESSED = -1;
 global.DEVICE_TYPE = "zumi";
 global.HOSTNAME_URL = "";
-global.ZUMI_IMPORT_STATEMENT = "import sys\nsys.path.insert(0,'/home/pi/zumi/lib')\nimport Engine as engine\nimport Speaker as speaker\nimport Lights as lights\nimport Infrared as infrared\nimport Timer as timer\nimport Camera as camera\nimport Eyes as eyes\n\n";
+global.ZUMI_IMPORT_STATEMENT = "import sys\nsys.path.insert(0,'/home/pi/zumi/lib')\nimport Engine as engine\nimport Speaker as speaker\nimport Lights as lights\nimport Infrared as infrared\nimport Timer as timer\nimport Camera as camera\nimport Eyes as eyes\nimport Personality as personality\n\n";
 global.CODRONE_IMPORT_STATEMENT = "import CoDrone\n\ndrone = CoDrone.CoDrone()\ndrone.pair(drone.Nearest)\n\n";
 global.BACKGROUND_RUNNING = false;
 global.ZUMI_CURRENT_VIEW = "junior";
